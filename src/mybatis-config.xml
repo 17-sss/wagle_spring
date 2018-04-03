@@ -5,6 +5,8 @@
 	
 	<typeAliases>
 		<typeAlias type="wagle.members.MemberDataBean" alias="Member"/>
+		<typeAlias type="wagle.board.WagleDataBean" alias="Wagle"/>
+		<typeAlias type="wagle.review.BoardDataBean" alias="board"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -20,5 +22,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="Member.xml"/>
+		<mapper resource="Wagle.xml"/>
+		<mapper resource="reviewBoard.xml"/>
 	</mappers>
 </configuration>
