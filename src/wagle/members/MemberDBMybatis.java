@@ -50,6 +50,22 @@ public class MemberDBMybatis extends MybatisConnector{
 				   
 				   }
 		
+	    //login때 name받아오는 메서드
+	    public MemberDataBean getUser2(String email, int chk) { 
+			sqlSession= sqlSession();
+			Map map = new HashMap();
+			map.put("email", email);
+			
+			MemberDataBean user = sqlSession.selectOne(namespace+".getUser2", map);
+			
+			sqlSession.commit();
+			sqlSession.close();
+			
+			return user;
+		}
+	    
+	    
+	    
 	    	//insert
 	    public void insertMember(MemberDataBean member) {
 			sqlSession = sqlSession();
@@ -91,7 +107,9 @@ public class MemberDBMybatis extends MybatisConnector{
 				sqlSession.close();
 				
 				return user;
-			}
+			}	
+			
+			
 			//update method
 			public int updateMember(MemberDataBean member) {
 				
@@ -148,21 +166,6 @@ public class MemberDBMybatis extends MybatisConnector{
 				sqlSession.close();
 				return li;
 			}
-			 
 
-			// 회원 수정할때 정보 불러오기 등..(마이페이지에서 수정도 포함)
-			/*public MemberDataBean getUser(int num, String email) { 
-				sqlSession= sqlSession();
-				Map map = new HashMap();
-				map.put("num", num);
-				map.put("email", email);
-				
-				MemberDataBean user = sqlSession.selectOne(namespace+".getUser1", map);
-				
-				sqlSession.commit();
-				sqlSession.close();
-				
-				return user;
-			}*/
 			
 }

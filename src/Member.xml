@@ -21,6 +21,10 @@
 		select * from wagle_member WHERE email=#{email}
 	</select>
 	
+	<select id="getUser2" parameterType="hashmap" resultType="Member">
+		select * from wagle_member WHERE email=#{email}
+	</select>
+	
 	
    
       <insert id="insertMember" parameterType="Member">

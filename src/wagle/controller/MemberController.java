@@ -1,6 +1,8 @@
 package wagle.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,17 +19,7 @@ import wagle.members.MemberDataBean;
 @RequestMapping("/member")
 public class MemberController {
 
-	/*WaglelistDBMybatis dbPro= WaglelistDBMybatis.getInstance();*/
 	MemberDBMybatis dbMember = MemberDBMybatis.getInstance();
-
-	
-	// 메인
-	@RequestMapping("/index")
-	public String index(Model model) {
-		/*List imgslide=dbPro.imgslide();
-		model.addAttribute("imgslide", imgslide);*/
-		return "index";
-	}
 	
 	// 회원가입 폼
 	@RequestMapping("/joinForm")
@@ -85,8 +77,8 @@ public class MemberController {
 	  		}else{
 	  			HttpSession session = request.getSession();
 	  			session.setAttribute("sessionEmail", sessionEmail);	
-	  			/*session.setAttribute("name", name);//name받아오기
-	  			System.out.println(name);*/
+	  			MemberDataBean user = dbMember.getUser2(sessionEmail, pwcheck);
+	  			session.setAttribute("name", user.getName());//name받아오기
 	  			return "redirect:/index";
 	  	   }		
 	} 
