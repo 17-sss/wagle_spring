@@ -14,7 +14,6 @@
 	body {
 		/*font-family: 'Jeju Gothic';*/
 		background-size: cover;
-		background-image: url("/wagle_spring/img/wagle.jpg");
  		padding-top: 5en;
  		/* display: flex; */
  		justify-content: center;
@@ -61,58 +60,57 @@
 <!-- signup Form -->
 <div class="w3-container w3-half w3-display-middle" style="width:40%;">
   <form class="w3-container w3-transparent" method="post" name="updateForm" onSubmit="return check()"
-	action="<%=request.getContextPath()%>/member/updatePro">
+	action="/wagle_spring/member/updatePro">
   <ul class="w3-ul w3-hover-shadow">
-  <li class="w3-yellow w3-xlarge w3-center w3-padding-32" style="color: black;">회원정보수정</li>
-	<input type="hidden" name="num" value="${num}">
-	
+  <li class="w3-yellow w3-xlarge w3-center w3-padding-32" style="color: black; width:100%;">회원정보수정</li>
+  <input type="hidden" name="email" value="${member.email}"/>	
 		<!-- 기본정보 -->
 			<table class="w3-table w3-bordered" style="width:100%;">
 			<tr height="30">
-			<td width="100">이름 :</td>
-			<td width="100">${member.name}</td>
+			<td width="30">이름 :</td>
+			<td width="70">${member.name}</td>
 			</tr>
 			<tr height="30">
-			<td width="100">이메일 :</td>
-			<td width="100">${member.email}</td>
+			<td width="30">이메일 :</td>
+			<td width="70">${member.email}</td>
 			</tr>
 			<tr height="30">
-			<td width="100">비밀번호:</td>
-			<td width="100">
-			<input class="w3-input w3-border  w3-light-grey" type="password" name="pwd" size="20" required="required">
+			<td width="30">비밀번호:</td>
+			<td width="70">
+			<input class="w3-input w3-border  w3-light-grey" type="password" name="pwd" size="20" value="${member.pwd}" required="required">
 			</td></tr>
 			<tr height="30">
-			<td width="100">비밀번호 확인 :</td>
-			<td width="100">
+			<td width="30">비밀번호 확인 :</td>
+			<td width="70">
 			<input class="w3-input w3-border  w3-light-grey" type="password" name="confirmPwd" size="20" onkeyup="checkPwd()" required="required">
 			<div id="checkPwd"></div>
 			</td></tr>
 			<tr height="30">
-			<td width="100">성별 :</td>
-			<td width="100">${member.gender}</td>
+			<td width="30">성별 :</td>
+			<td width="70">${member.gender}</td>
 			</tr>
 			<tr height="30">
-			<td width="100">나이 :</td>
-			<td width="100">
-				 <input type="radio" name="age" value="10대" required="required">10대
-				 <input type="radio" name="age" value="20대" required="required">20대
-				 <input type="radio" name="age" value="30대" required="required">30대
-				 <input type="radio" name="age" value="40대" required="required">40대
-				 <input type="radio" name="age" value="50대" required="required">50대
-				 <input type="radio" name="age" value="60대" required="required">60대
+			<td width="30">나이 :</td>
+			<td width="70">
+				 <input type="radio" name="age" value="10대" required="required" <c:if test="${member.age eq '10대'}">checked </c:if>>10대
+				 <input type="radio" name="age" value="20대" required="required" <c:if test="${member.age eq '20대'}">checked </c:if>>20대
+				 <input type="radio" name="age" value="30대" required="required" <c:if test="${member.age eq '30대'}">checked </c:if>>30대
+				 <input type="radio" name="age" value="40대" required="required" <c:if test="${member.age eq '40대'}">checked </c:if>>40대
+				 <input type="radio" name="age" value="50대" required="required" <c:if test="${member.age eq '50대'}">checked </c:if>>50대
+				 <input type="radio" name="age" value="60대" required="required" <c:if test="${member.age eq '60대'}">checked </c:if>>60대
 			</td>
 			</tr>
 			<tr height="30">
-			<td width="100">거주지 :</td>
-			<td width="100">
-				<input class="w3-input w3-border w3-light-grey" type="text" name="loc" size="20" required="required">	
+			<td width="30">거주지 :</td>
+			<td width="70">
+				<input class="w3-input w3-border w3-light-grey" type="text" name="loc" size="10" value="${member.loc}" required="required">	
 			</td>
 			</tr>
 			
 			<tr height="30">
-			<td width="100">
-			<input class="w3-button w3-yellow w3-round" type="submit" value="작성완료">
-			<input class="w3-button w3-yellow w3-round" type="reset" value="다시작성">
+			<td width="30" colspan="2">
+			<input class="w3-button w3-yellow w3-round" type="submit" value="정보수정">
+			<input class="w3-button w3-yellow w3-round" type="button" value="탈퇴하기" onclick="window.location.href='deleteForm?email=${member.email}'">
 			<input class="w3-button w3-yellow w3-round" type="button" value="취소" onclick="window.location.href='/wagle_spring/index'">
 			</td></tr>
 			</table>

@@ -95,10 +95,9 @@ public class MemberDBMybatis extends MybatisConnector{
 		    
 			
 			//update - getUser(chk "update")
-			public MemberDataBean getUser(int num,String email, String chk) { 
+			public MemberDataBean getUser(String email, String chk) { 
 				sqlSession= sqlSession();
 				Map map = new HashMap();
-				map.put("num", num);
 				map.put("email", email);
 				
 				MemberDataBean user = sqlSession.selectOne(namespace+".getUser", map);
@@ -135,7 +134,6 @@ public class MemberDBMybatis extends MybatisConnector{
 				
 				if(admin.equals("admin")) {
 					x = sqlSession.delete(namespace+".deleteMember2", map);	
-				
 				}
 				else {
 					x = sqlSession.delete(namespace+".deleteMember", map);
@@ -154,8 +152,7 @@ public class MemberDBMybatis extends MybatisConnector{
 				sqlSession.close();
 				return x;
 			}
-			
-			
+						
 			// 회원리스트 목록출력 메소드?
 			public List getUsers(int startRow, int endRow) {
 				sqlSession= sqlSession();
