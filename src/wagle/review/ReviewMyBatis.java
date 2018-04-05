@@ -33,7 +33,7 @@ public class ReviewMyBatis extends MybatisConnector {
 		sqlSession.close();
 		
 	}
-	public List getArticles(int startRow,int endRow,String boardid) {
+	public List getArticles(int startRow,int endRow,int boardid) {
 		sqlSession = sqlSession();
 		
 		Map map = new HashMap();
@@ -46,10 +46,10 @@ public class ReviewMyBatis extends MybatisConnector {
 		
 		return li;
 	}
-	public int getArticleCount(String boardid) {
+	public int getArticleCount(int boardid) {
 		int x=0;
 		sqlSession = sqlSession();
-		Map<String,String> map = new HashMap<String,String>();
+		Map map = new HashMap();
 		map.put("boardid", boardid);
 		x = sqlSession.selectOne(namespace+".getArticleCount",map);
 		sqlSession.close();

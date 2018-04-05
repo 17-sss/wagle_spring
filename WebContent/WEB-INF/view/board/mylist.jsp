@@ -39,11 +39,16 @@
 		</tr>
     
     	<c:forEach var="mylist" items="${mylist}">
+    	<c:if test="${today > mylist.wend}">
+		<tr style="color:red">
+		</c:if>
+		<c:if test="${today <= mylist.wend}">
 		<tr>
+		</c:if>
 			<td align="center" width="50">${count}</td>
 			<c:set var="count" value="${count-1}"/>
 			<td align="center" width="250">
-			<a style="cursor:pointer" onclick="document.location.href='wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
+			<a style="cursor:pointer" onclick="document.location.href='/wagle_spring/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
 			${mylist.wname}</a></td>
 			<td align="center" width="100">${mylist.whost}</td>
 			<td align="center" width="100">
@@ -51,7 +56,7 @@
 			10/${mylist.wmax}</td>
 			<td align="center" width="100">
 			<button class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
-			onclick="document.location.href='groupUpdate?wboardid=${mylist.wboardid}'">¼öÁ¤</button>
+			onclick="document.location.href='/wagle_spring/board/wagleUpdate?wboardid=${mylist.wboardid}'">¼öÁ¤</button>
 			</td>
 		</tr>
 	 </c:forEach>
@@ -75,7 +80,7 @@
 	</c:if>
 	<c:if test="${count2!=0}">
 	
- 		<table class="w3-table w3-bordered">
+ 		<table class="w3-table w3-bordered" style="margin-bottom:100px;">
 		<tr class="w3-yellow">
 		<td align="center" width="50">¹øÈ£</td>
 		<td align="center" width="250">¿Í ±Û</td>
@@ -88,11 +93,11 @@
 		<td align="center" width="50">${count2}</td>
 		<c:set var="count2" value="${count2-1}"/>
 		<td align="center" width="250">
-		<a style="cursor:pointer" onclick="document.location.href='wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
+		<a style="cursor:pointer" onclick="document.location.href='/wagle_spring/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
 		${mylist.wname}</a></td>
 		<td align="center" width="100">${mylist.whost}</td>
 		<td align="center" width="100">
-		<button onclick="document.location.href='wagleOut?wboardid=${mylist.wboardid}'" class="w3-btn w3-padding-small w3-round w3-red">Å»Åð</button></td>
+		<button onclick="document.location.href='/wagle_spring/board/wagleOut?wboardid=${mylist.wboardid}'" class="w3-btn w3-padding-small w3-round w3-red">Å»Åð</button></td>
 		<td align="center" width="100">
 		<button  onclick="document.getElementById('reviewForm').style.display='block'"
 		class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey">ÈÄ±â ÀÛ¼º</button>

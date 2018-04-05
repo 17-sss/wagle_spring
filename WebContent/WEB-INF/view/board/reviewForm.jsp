@@ -15,9 +15,8 @@
 		    <div class="w3-modal-content w3-animate-zoom w3-padding-small" style="max-width:40%">
 		      <div class="w3-container w3-padding-small">
 		        <span onclick="document.getElementById('reviewForm').style.display='none'" class="w3-button w3-display-topright">&times;</span> 
-		       <form method="post" action="reviewinsert?count=${count}">
+		       <form method="post" action="reviewinsert">
 		       			  <input type="hidden" name="boardid" value="${mylist.wboardid}">
-		       			  <input type="hidden" name="num" value="${num}"/>
 				  <table align="center" cellspacing="10" class="w3-white w3-padding-large">
 				    <c:if test="${sessionEmail != null}">
 				    <tr>

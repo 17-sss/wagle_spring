@@ -17,7 +17,7 @@
   $( function() {
     $( "#datepicker" ).datepicker({
     		dateFormat: "yy-mm-dd",
-    		/* minDate:0 */
+    		minDate:0
     });
   } );
   $( function() {
@@ -34,7 +34,7 @@
 </head>
 <body>
 	<center>
-	<form method="post" enctype="multipart/form-data" action="/wagle_spring/board/wagleOpenPro">
+	<form method="post" enctype="multipart/form-data" action="wagleOpenPro">
 		<input type="hidden" name="whost" value="${whost}"/>
 		<h4>Wagle Open</h4>
 	
@@ -44,11 +44,11 @@
 				<td><input class="w3-input w3-animate-input" style="width:50%" name="wname" type="text"></td>
 				</tr>
 				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">와글장</td>
+				<td class="w3-panel w3-leftbar w3-border-yellow">와글 지기</td>
 				<td>${whost}</td>
 				</tr>
 				<tr>
-				<td class="w3-panel w3-leftbar w3-border-yellow">와글장 소개</td>
+				<td class="w3-panel w3-leftbar w3-border-yellow">와글 지기 소개</td>
 				<td><textarea class="w3-input w3-border w3-margin-bottom" name="wprofile" rows="4" cols="10"></textarea></td>
 				</tr> 
 				<tr>

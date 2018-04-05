@@ -32,7 +32,7 @@
 <body class="w3-light-gray">
 
 <!-- 그룹 배경 -->
-<section class="section_img1" style="background-image:url(/wagle/wagleimg/${wagle.filename};)">
+<section class="section_img1" style="background-image:url(/wagle_spring/wagleimg/${wagle.filename};)">
 	<header class="w3-center w3-text-white">
 
 	</header>
@@ -162,13 +162,18 @@
 
 
 <!-- 후기 -->
-<div>
+<div class="w3-container" style="margin: 0% 25% 0% 25%;">
 <c:if test="${count==0}">
-
-			후기가 없습니다.
-		
+<center>
+와글 후기 :
+<table id="customers" style="width:800px">
+  <tr class="w3-blue">
+    <td colspan="2">후기가 없습니다.</td>
+ 
+  </tr>
+</table>
+</center>
 </c:if>	
-
 <c:if test="${count!=0}">
 <center>
 와글 후기 :

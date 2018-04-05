@@ -17,7 +17,7 @@
  		
  	</script>
 	<meta http-equiv="Refresh"
- 			content="0;url=groupUpdate?wboardid=${wagle.wboardid}&pageNum=${pageNum}">
+ 			content="0;url=wagleUpdate?wboardid=${wagle.wboardid}">
 
 </body>
 </html>

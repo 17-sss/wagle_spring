@@ -105,22 +105,24 @@
 <div class="w3-container w3-margin-top " style="margin-left: 10%; margin-right: 10%;">
 
 	<c:forEach var="waglelist" items="${waglelist}">
-	 
+		<!-- 기간이 지난 와글은 표시하지 않도록 해준다. -->
+	 	<c:if test="${today <= waglelist.wend}">
 		 <div class="w3-third w3-container w3-margin-bottom">
 			<div class="w3-container w3-white w3-padding w3-center w3-round w3-button w3-border"  style="height:100%; width:100%;" onclick="document.location.href='wagleContent?wboardid=${waglelist.wboardid}&wname='+encodeURI('${waglelist.wname}')">
 				<img src="<%=request.getContextPath()%>/wagleimg/${waglelist.filename}" alt="Test" class="autoimg">
 				<h4><b>${waglelist.wname}</b></h4>
-				<span class="w3-text-gray">${waglelist.wintro}</span>
+				<span class="w3-text-gray">와글 지기 : ${waglelist.whost}</span>
 				<div>
 					<hr>
 					<span class="w3-left">
-						<b>와글지기:&nbsp;</b>
-						<span>${waglelist.whost}</span>
+						<b>기간:&nbsp;</b>
+						<span>${waglelist.wstart} ~ ${waglelist.wend}</span>
 					</span>
 					<i class="fa fa-user w3-right" style="font-size: 13pt;">&nbsp;<span>1/${waglelist.wmax}</span></i>
 				</div>
 			</div>
 		</div>
+		</c:if>
 	 </c:forEach>
 	 
 	 

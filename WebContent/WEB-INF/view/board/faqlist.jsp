@@ -61,7 +61,6 @@ body{
 		}		
 		var btn2 = document.getElementById(id+index);
 		btn2.style.backgroundColor = "#FFFF24";
-		alert(btn2)
 		}
 	
 </script>

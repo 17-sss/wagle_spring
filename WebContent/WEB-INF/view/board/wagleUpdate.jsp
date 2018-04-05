@@ -11,11 +11,16 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({
+    	dateFormat: "yy-mm-dd"
+    });
   } );
   $( function() {
-	    $( "#datepicker2" ).datepicker();
-	  } );
+	    $( "#datepicker2" ).datepicker({
+	    dateFormat: "yy-mm-dd",
+	    minDate:0
+	 });
+  } );
   
 
   </script>
@@ -23,13 +28,13 @@
 </head>
 <body>
 	<center>
-	<form method="post" enctype="multipart/form-data" action="groupUpdatePro">
+	<form method="post" enctype="multipart/form-data" action="wagleUpdatePro">
 		<h4>Wagle Update</h4>
 	
 		<input type="hidden" name="whost" value="${wagle.whost}"/>
 		<input type="hidden" name="wboardid" value="${wagle.wboardid}"/>
-		<input type="hidden" name="filename" value="${wagle.filename}"/>
-		<input type="hidden" name="filesize" value="${wagle.filesize}"/>
+		<input type="hidden" name="name" value="${wagle.filename}"/>
+		<input type="hidden" name="size" value="${wagle.filesize}"/>
 		<input type="hidden" name="pageNum"	value="${pageNum}"/>
 			<table class="w3-table-w3-border" cellspacing="10" style="margin-bottom:100px;">
 				<tr>
@@ -92,13 +97,27 @@
 				</td>
 				</tr>
 				<tr>
+
 				
+				<c:if test="${today > wagle.wend}">
+				<td class="w3-panel w3-leftbar w3-border-yellow" style="color:red"><b>기간</b></td>
+				</c:if>
+				<c:if test="${today <= wagle.wend}">
 				<td class="w3-panel w3-leftbar w3-border-yellow">기간</td>
+				</c:if>
 				<td>
 				<input type="text" name="wstart" id="datepicker" value="${wagle.wstart}">&nbsp;&nbsp;~&nbsp;&nbsp;
 				<input type="text" name="wend" id="datepicker2" value="${wagle.wend}">
 				</td>
 				</tr>
+				
+				<c:if test="${today > wagle.wend}">
+				<tr>
+				<td></td>
+				<td style="color:red">기간을 늘려주세요 !</td>
+				</tr>
+				</c:if>
+				
 				<tr style="width:200px; height:200px">
 				<td class="w3-panel w3-leftbar w3-border-yellow">와글 소개</td>
 				<td><textarea class="w3-input w3-border w3-margin-bottom" name="wintro" rows="4" cols="10">${wagle.wintro}</textarea></td>
@@ -106,14 +125,14 @@
 				<tr>
 				<td class="w3-panel w3-leftbar w3-border-yellow">그룹이미지<br/>업로드</td>
 				<td>
-				<img src="/wagle/wagleimg/${wagle.filename}" style="height:300px; width:300px;">
+				<img src="/wagle_spring/wagleimg/${wagle.filename}" style="height:300px; width:300px;">
 				<br><br>
-				<input class="w3-input w3-border" name="upload" type="file"></td>
+				<input class="w3-input w3-border" name="uploadfile" type="file"></td>
 				</tr>
 				<tr>
 				<td colspan="2" class="w3-center">
 				<button class="w3-button w3-yellow w3-border" type="submit">수정</button>
-				<a class="w3-button w3-red w3-border" onclick="document.location.href='deleteWagle?wboardid=${wagle.wboardid}'">삭제</a>
+				<a class="w3-button w3-red w3-border" onclick="document.location.href='wagleDelete?wboardid=${wagle.wboardid}'">삭제</a>
 				</td>
 				</tr>
 			</table>
