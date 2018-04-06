@@ -94,6 +94,18 @@
 			select * from wagle_list where wboardid=#{wboardid} and wagler=#{wagler}
 	</select>
 	
+	<!-- ============ 관리자 - 그룹 목록 출력 =============== -->
+	<select id="getWaglelist_ad" parameterType="hashmap" resultType="Wagle">
+		select * from (select rownum rnum, a.* from (select wboardid, wname, whost from wagle_list where whost IS NOT NULL)a) 
+		where rnum between #{startRow} and #{endRow} order by wboardid desc
+	</select>
+	
+	<select id="getWagleCount_ad" resultType="int">
+		SELECT nvl(count(*),0) FROM wagle_list where whost IS NOT NULL
+	</select>
+	
+	<!-- ============================================ -->
+	
 	
 	
 </mapper>

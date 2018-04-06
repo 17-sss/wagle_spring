@@ -22,7 +22,7 @@
       </insert>
       
       <update id="updateMember" parameterType="Member">
-		update wagle_member set pwd=#{pwd}, loc=#{loc}, age=#{age} where email=#{email}
+		update wagle_member set email=#{email}, pwd=#{pwd}, loc=#{loc}, age=#{age} where email=#{email}
       </update>
       
       <delete id="deleteMember" parameterType="hashmap">
@@ -33,13 +33,21 @@
     	delete from wagle_member where email=#{email}
       </delete>
       
-      
       <select id="confirmId" parameterType="hashmap" resultType="map">
       	select email from wagle_member where email = #{email}
       </select>
       
       <select id="login" parameterType="hashmap" resultType="map">
       	SELECT pwd FROM wagle_member WHERE email = #{email}
-      </select> 
+      </select>
+      
+      <select id="getMemberCount" resultType="int">
+		SELECT nvl(count(*),0) FROM wagle_member
+	  </select>
+	
+	  <select id="getMembers" parameterType="hashmap" resultType="Member">
+		select * from (select rownum rnum, a.* from (select num, email, pwd, name, gender, age, loc, regdate from wagle_member)a) 
+		where rnum between #{startRow} and #{endRow} order by num desc
+	  </select>
 	
 </mapper>

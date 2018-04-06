@@ -9,8 +9,14 @@
 	<c:if test="${chk == 1}">
 		<script>
 		alert("회원정보가 수정되었습니다.")</script>
-	<meta http-equiv="Refresh" content="0;url=/wagle_spring/index?email=${member.email}">
+		<c:if test="${sessionEmail ne 'admin'}">
+			<meta http-equiv="Refresh" content="0;url=/wagle_spring/index?email=${member.email}">
+		</c:if>
+		<c:if test="${sessionEmail eq 'admin'}">
+			<meta http-equiv="Refresh" content="0;url=${pageContext.request.contextPath}/admin/memberlist">
+		</c:if>
 	</c:if>
+	
 	<c:if test="${chk != 1}">
 		<script>
 		alert("비밀번호가 맞지 않습니다")

@@ -62,7 +62,7 @@ public class MemberController {
 		
 	  		String sessionEmail = request.getParameter("email");
 	  		String pwd = request.getParameter("pwd");
-	  		
+	  		String sessionPwd = request.getParameter("pwd");
 	  		
 	  		int pwcheck = dbMember.login(sessionEmail, pwd);	
 	  		
@@ -75,14 +75,12 @@ public class MemberController {
 	  		}else{
 	  			HttpSession session = request.getSession();
 	  			session.setAttribute("sessionEmail", sessionEmail);	
+	  			session.setAttribute("sessionPwd", sessionPwd);	
 	  			MemberDataBean user = dbMember.getUser2(sessionEmail, pwcheck);
 	  			session.setAttribute("name", user.getName());//name받아오기
-	  			
-	  			int count = dbMessage.count(user.getName());
-	  			session.setAttribute("count", count);
 	  			return "redirect:/index";
 	  	   }		
-	} 
+	}  
 	   
 	
 	//로그아웃
@@ -126,10 +124,17 @@ public class MemberController {
 	public String deleteForm(MemberDataBean member, Model mv, HttpServletRequest request)  throws Throwable { 
 		HttpSession session = request.getSession();
 		String sessionEmail = (String)session.getAttribute("email");  //로그인된 본인 아이디에 해당하는 패스워드로 delete하기 위해 필요
-
-		sessionEmail = request.getParameter("email");	//admin으로 delete하기위해 필요
+		String sessionPwd = (String)session.getAttribute("pwd"); // [관리자] 뷰에서 세션pwd 비교
+		//sessionEmail = request.getParameter("email");	//admin으로 delete하기위해 필요
+		String email = request.getParameter("email");
+		String pwd = request.getParameter("pwd");
 		
-		mv.addAttribute("email", sessionEmail);
+		
+		mv.addAttribute("sessionEmail", sessionEmail);
+		mv.addAttribute("sessionPwd", sessionPwd);
+		mv.addAttribute("email", email);
+		mv.addAttribute("pwd", pwd);
+		
 		return  "deleteForm"; 
 	} 
 	
@@ -137,18 +142,29 @@ public class MemberController {
 	public String deletePro(MemberDataBean member, Model mv, HttpServletRequest request)  throws Throwable { 
 		HttpSession session = request.getSession();
 		
-		String sessionEmail = request.getParameter("email");
+		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		
 		dbMember = MemberDBMybatis.getInstance();
-		int check = dbMember.deleteMember(sessionEmail, pwd, (String) session.getAttribute("sessionEmail"));
+		
+		int check=0;
+		
+		if (!session.getAttribute("sessionEmail").equals("admin")) {
+			check = dbMember.deleteMember(email, pwd, (String) session.getAttribute("sessionEmail"));
+		} else if (session.getAttribute("sessionEmail").equals("admin")) {
+			check = dbMember.deleteMember(email, null, (String) session.getAttribute("sessionEmail"));
+		}
 		
 		mv.addAttribute("check", check);
-		if(check==1) {
+		
+		if(check==1 && !session.getAttribute("sessionEmail").equals("admin")) {
 			session.invalidate();
 		}
+		
+		
+		
 		return "deletePro";
 		
-	} 
+	}
 	
 }

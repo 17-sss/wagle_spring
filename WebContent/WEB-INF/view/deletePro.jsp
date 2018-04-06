@@ -7,10 +7,18 @@
 </head>
 <body>
 	<c:if test="${check == 1}">
+ 		<c:if test="${sessionEmail ne 'admin'}">
  		<script language="JavaScript">
 		alert("탈퇴가 완료되었습니다.")
-		</script>
- 		<meta http-equiv="Refresh" content="0;url=/wagle_spring/index">	
+		</script>	
+			<meta http-equiv="Refresh" content="0;url=/wagle_spring/index">	
+		</c:if>
+		<c:if test="${sessionEmail eq 'admin'}">
+		<script language="JavaScript">
+		alert("삭제가 완료되었습니다.")
+		</script>	
+			<meta http-equiv="Refresh" content="0;url=${pageContext.request.contextPath}/admin/memberlist">
+		</c:if>
 	</c:if> 
 	<c:if test="${check != 1}">
 		<script>

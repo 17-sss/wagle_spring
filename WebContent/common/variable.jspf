@@ -54,6 +54,20 @@
 			</div>
 			</c:if>
 			
+			<c:if test="${sessionEmail eq 'admin'}">
+			<div class="w3-dropdown-hover">
+				<button class="w3-button w3-large w3-small">包府磊 其捞瘤</button>
+				<div class="w3-dropdown-content w3-bar-block w3-border">
+					<button class="w3-bar-item w3-button w3-hide-small w3-large" title="memberlist" onclick="document.location.href='${pageContext.request.contextPath}/admin/memberlist'">
+						雀盔包府
+					</button>
+					<button class="w3-bar-item w3-button w3-hide-small w3-large" title="waglelist_ad" onclick="document.location.href='${pageContext.request.contextPath}/admin/waglelist_ad'">
+						弊缝包府
+					</button>
+				</div>
+			</div>
+			</c:if>
+			
 			<c:if test="${sessionEmail == null}"> 
 			<button class="w3-bar-item w3-button w3-hide-small w3-large w3-right" onclick="document.getElementById('login').style.display='block'"> 
 					Login

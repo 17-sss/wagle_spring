@@ -60,7 +60,7 @@
 <!-- signup Form -->
 <div class="w3-container w3-half w3-display-middle" style="width:40%;">
   <form class="w3-container w3-transparent" method="post" name="updateForm" onSubmit="return check()"
-	action="/wagle_spring/member/updatePro">
+	action="${pageContext.request.contextPath}/member/updatePro">
   <ul class="w3-ul w3-hover-shadow">
   <li class="w3-yellow w3-xlarge w3-center w3-padding-32" style="color: black; width:100%;">회원정보수정</li>
   <input type="hidden" name="email" value="${member.email}"/>	
@@ -77,14 +77,21 @@
 			<tr height="30">
 			<td width="30">비밀번호:</td>
 			<td width="70">
+			<c:if test="${sessionEmail ne 'admin'}">
 			<input class="w3-input w3-border  w3-light-grey" type="password" name="pwd" size="20" value="${member.pwd}" required="required">
+			</c:if>
+			<c:if test="${sessionEmail eq 'admin'}">
+			<input class="w3-input w3-border  w3-light-grey" type="text" name="pwd" size="20" value="${member.pwd}" required="required">
+			</c:if>
 			</td></tr>
+			<c:if test="${sessionEmail ne 'admin'}">
 			<tr height="30">
 			<td width="30">비밀번호 확인 :</td>
 			<td width="70">
 			<input class="w3-input w3-border  w3-light-grey" type="password" name="confirmPwd" size="20" onkeyup="checkPwd()" required="required">
 			<div id="checkPwd"></div>
 			</td></tr>
+			</c:if>
 			<tr height="30">
 			<td width="30">성별 :</td>
 			<td width="70">${member.gender}</td>
@@ -110,8 +117,13 @@
 			<tr height="30">
 			<td width="30" colspan="2">
 			<input class="w3-button w3-yellow w3-round" type="submit" value="정보수정">
+			<c:if test="${sessionEmail ne 'admin'}">
 			<input class="w3-button w3-yellow w3-round" type="button" value="탈퇴하기" onclick="window.location.href='deleteForm?email=${member.email}'">
 			<input class="w3-button w3-yellow w3-round" type="button" value="취소" onclick="window.location.href='/wagle_spring/index'">
+			</c:if>
+			<c:if test="${sessionEmail eq 'admin'}">
+			<input class="w3-button w3-yellow w3-round" type="button" value="목록" onclick="window.location.href='/wagle_spring/admin/memberlist'">
+			</c:if>
 			</td></tr>
 			</table>
 			</ul></form>

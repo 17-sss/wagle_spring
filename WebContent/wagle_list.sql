@@ -18,6 +18,10 @@ CREATE SEQUENCE wagle_wagleser
   INCREMENT BY 1
   NOMAXVALUE ;
 
+DROP SEQUENCE wagle_wagleser;
+
 TRUNCATE TABLE wagle_list;
 DROP TABLE wagle_list;
 SELECT * FROM wagle_list;
+
+COMMIT;

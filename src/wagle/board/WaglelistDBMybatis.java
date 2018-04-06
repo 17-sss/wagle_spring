@@ -237,6 +237,27 @@ public class WaglelistDBMybatis extends MybatisConnector{
 		return li;
 	}
 	
+	// 관리자 - 와글목록 출력 관련 =============================================
+	public List getWaglelist_ad (int startRow, int endRow) {
+		sqlSession= sqlSession();
+		Map map = new HashMap();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		List li = sqlSession.selectList(namespace + ".getWaglelist_ad",map);
+		sqlSession.close();
+		return li;
+	}
+	
+	// 와글 전체 목록 갯수.
+	public int getWagleCount_ad() {
+		int num = 0;
+		sqlSession=sqlSession();
+		num = sqlSession.selectOne(namespace+".getWagleCount_ad");
+		sqlSession.close();
+		return num;
+	}
+	// =================================================================
+	
 	
 	
 	

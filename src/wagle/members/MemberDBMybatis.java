@@ -134,32 +134,33 @@ public class MemberDBMybatis extends MybatisConnector{
 				
 				if(admin.equals("admin")) {
 					x = sqlSession.delete(namespace+".deleteMember2", map);	
+					System.out.println("deletePro: 어드민입니다."); //확인완료 동작.
 				}
 				else {
 					x = sqlSession.delete(namespace+".deleteMember", map);
+					System.out.println("deletePro: 회원입니다.");
 				}
 				sqlSession.commit(); 
 				sqlSession.close();
 				return x;
 			}
-
-	/**************************************************************************/		
+			
 			// 회원 수 메소드
-			public int getUserCount() {
+			public int getMemberCount() {
 				int x = 0;
 				sqlSession=sqlSession();
-				x = sqlSession.selectOne(namespace+".getUserCount");
+				x = sqlSession.selectOne(namespace+".getMemberCount");
 				sqlSession.close();
 				return x;
 			}
 						
 			// 회원리스트 목록출력 메소드?
-			public List getUsers(int startRow, int endRow) {
+			public List getMembers(int startRow, int endRow) {
 				sqlSession= sqlSession();
 				Map map = new HashMap();
 				map.put("startRow", startRow);
 				map.put("endRow", endRow);
-				List li = sqlSession.selectList(namespace + ".getUsers",map);
+				List li = sqlSession.selectList(namespace + ".getMembers",map);
 				sqlSession.close();
 				return li;
 			}
