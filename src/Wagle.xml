@@ -38,7 +38,16 @@
 	<select id="getWagles2" parameterType="hashmap" resultType="Wagle">
 			select * from wagle_list where wagler=#{name} order by wboardid desc
 	</select>
-
+		
+	<!-- 와글 회원 구하기 -->	
+	<select id="getWagleMember" parameterType="hashmap" resultType="Wagle">
+		select wagler from wagle_list where wboardid=#{wboardid} and whost IS NULL
+	</select>
+	
+	<select id="getHost" parameterType="hashmap" resultType="String">
+			select whost from wagle_list where wboardid=#{wboardid} and wagler IS NULL
+	</select>
+	
 	<!-- 내가 오픈한 와글의 정보 수정 -->
 	<select id="getWagle" parameterType="hashmap" resultType="Wagle">
 			select * from wagle_list where wboardid = #{wboardid} and wagler IS NULL
