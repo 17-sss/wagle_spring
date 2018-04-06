@@ -10,12 +10,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import wagle.members.MemberDBMybatis;
 import wagle.members.MemberDataBean;
+import wagle.message.MessageMyBatis;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
 	MemberDBMybatis dbMember = MemberDBMybatis.getInstance();
+	MessageMyBatis dbMessage = MessageMyBatis.getInstance();
 	
 	// 회원가입 폼
 	@RequestMapping("/joinForm")
@@ -75,6 +77,9 @@ public class MemberController {
 	  			session.setAttribute("sessionEmail", sessionEmail);	
 	  			MemberDataBean user = dbMember.getUser2(sessionEmail, pwcheck);
 	  			session.setAttribute("name", user.getName());//name받아오기
+	  			
+	  			int count = dbMessage.count(user.getName());
+	  			session.setAttribute("count", count);
 	  			return "redirect:/index";
 	  	   }		
 	} 
