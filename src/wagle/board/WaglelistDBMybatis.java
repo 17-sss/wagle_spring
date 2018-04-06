@@ -180,7 +180,7 @@ public class WaglelistDBMybatis extends MybatisConnector{
 			sqlSession.close();
 			return li;
 	}
-	 
+
 	 //원하는 와글에 가입한다. 
 	 public void wagleJoin(int wboardid,String wagler,String wname) {
 			sqlSession = sqlSession();

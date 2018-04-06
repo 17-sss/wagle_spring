@@ -92,6 +92,7 @@
 <div class="w3-container"  style="margin-left: 30%; margin-right: 30%;">
 	<div class="w3-row w3-section w3-center">
 	    <div class="w3-rest">
+	      
 	      <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
 	      <input class="w3-button w3-yellow w3-small" value="Search" type="button" onclick="#">
 	      
@@ -118,7 +119,7 @@
 						<b>±â°£:&nbsp;</b>
 						<span>${waglelist.wstart} ~ ${waglelist.wend}</span>
 					</span>
-					<i class="fa fa-user w3-right" style="font-size: 13pt;">&nbsp;<span>1/${waglelist.wmax}</span></i>
+					<i class="fa fa-user w3-right" style="font-size: 13pt;">&nbsp;<span>${waglelist.all}/${waglelist.wmax}</span></i>
 				</div>
 			</div>
 		</div>

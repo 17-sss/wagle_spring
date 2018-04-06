@@ -49,7 +49,7 @@
 		<div class="w3-center w3-margin" style="display: inline-block;">
 			<i class="fa fa-user fa-4x"></i>
 			<br>
-			<span class="w3-text-gray w3-medium">5/${wagle.wmax}명</span>
+			<span class="w3-text-gray w3-medium">${wagle.all}/${wagle.wmax}명</span>
 		</div>
 		&nbsp;
 		<div class="w3-center w3-margin" style="display: inline-block;">
@@ -120,7 +120,13 @@
 			<p>
 				<b>기간:</b>${wagle.wstart} ~ ${wagle.wend}
 				<br>
-				<b>지역:</b>${wagle.wloc}
+				<b>지역:</b>
+				<c:if test="${wagle.wloc eq '서울특별시 마포구 월드컵북로 21'}">
+				 <%@include file="/mapAPI/wagleN.jsp"%>
+				</c:if>
+				<c:if test="${wagle.wloc eq '서울특별시 강남구 테헤란로 132 한독약품빌딩 8층 쌍용교육센터'}">
+				 <%@include file="/mapAPI/wagleS.jsp"%>
+				</c:if>
 			</p>
 			<br>
 		</div>
@@ -250,6 +256,7 @@
 	<c:if test="${chk}">
 		<div class="w3-center w3-margin-bottom">
 		<a class="w3-padding-large w3-center w3-yellow w3-large">이미 가입한 와글입니다.</a>
+		
 		<br><br>
 		</div>
 	</c:if>

@@ -63,17 +63,22 @@ body{
 		btn2.style.backgroundColor = "#FFFF24";
 		}
 	
+	function x_click(id) {
+		var btn1 = document.getElementById(id);
+		btn1.style.backgroundColor="#A6A6A6";
+	}
+	
 </script>
 
 <body>
-	<div id="p" style="width:1200px">
+	<div id="p" style="width:1200px;">
 		<div>
 			<h2><b>FAQ</b></h2>
 			<h6><font color="gray">무엇을 도와드릴까요?</font></h6>
 			<h6>더 궁금하신 사항은 <font color="orange">contact@wagle.co.kr</font> 혹은 상담원에게 문의주세요.</h6>
 			<h6>-상담가능시간 : 월 ~ 금 09:00~18:00</h6>
 		</div>
-		<div id="table">
+		<div id="table" style="height:100%; padding-bottom:50px;">
 			
 			<div class="w3-center w3-margin-top">
 				<br/><br/>
@@ -90,8 +95,9 @@ body{
 		</button>
 					<center>
 			<div id="id1" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q1');"class="w3-button w3-yellow w3-display-topright">x</span>
  		 	<p align="left">큰 행운이겠죠?</p>
+ 		 	<br>
 			</div>
 					</center>
 		</div>
@@ -105,8 +111,9 @@ body{
 		</button>
 					<center>
 			<div id="id2" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q2');"class="w3-button w3-yellow w3-display-topright">x</span>
  		 	<p align="left">네 가능합니다.</p>
+ 		 	<br>
 			</div>
 					</center>	
 		</div>
@@ -120,8 +127,9 @@ body{
 		</button>
 					<center>
 			<div id="id3" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q3');"class="w3-button w3-yellow w3-display-topright">x</span>
  		 	<p align="left">와글 멤버십은 4개월(한 시즌) 단위로 운영되며 1-4월, 5-8월, 9-12월 이렇게 1년에 세 시즌이 진행됩니다.</p>
+			<br>
 			</div>
 					</center>	
 		</div>
@@ -135,8 +143,9 @@ body{
 		</button>
 					<center>
 			<div id="id4" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q4');"class="w3-button w3-yellow w3-display-topright">x</span>
  		 	<p align="left">모집 기간이 끝나고 시즌이 시작되고 나면 신청이 불가능합니다.</p>
+ 		 	<br>
 			</div>
 					</center>	
 		</div>
@@ -150,9 +159,10 @@ body{
 		</button>
 					<center>
 			<div id="id5" class="w3-display-container" style="display:none;width:1000px;">
-  		<span onclick="this.parentElement.style.display='none'"class="w3-button w3-yellow w3-display-topright">x</span>
+  		<span onclick="this.parentElement.style.display='none'; x_click('q5');"class="w3-button w3-yellow w3-display-topright">x</span>
  		 	<p align="left">와글 홈페이지의 채팅으로 환불 신청하실 수 있습니다.<br/>
 							신청해주시면 최대 3영업일 내로 환불 완료됩니다. :) </p>
+			<br>
 			</div>
 					</center>	
 		</div>
