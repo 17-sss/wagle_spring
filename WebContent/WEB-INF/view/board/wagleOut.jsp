@@ -7,10 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${chk==1}">
 	<script language="JavaScript">
-	 alert("와글에서 나가셨습니다.")
+	 alert("와글에서 나가셨습니다.");
 	</script>
+	</c:if>
+	<c:if test="${chk==2}">
+	<script>
+	alert("와글에서 내보냈습니다.");
+	</script>
+	</c:if>
 	
 	<meta http-equiv="Refresh" content="0;url=mylist">
+	
 </body>
 </html>

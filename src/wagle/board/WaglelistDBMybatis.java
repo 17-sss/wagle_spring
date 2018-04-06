@@ -106,6 +106,26 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	
 
+  	//와글 회원 구하기
+ 	public List getWagleMember(int wboardid) {
+		sqlSession = sqlSession();
+		Map map = new HashMap();
+		map.put("wboardid", wboardid);
+		
+		List li = sqlSession.selectList(namespace+".getWagleMember",map);
+		sqlSession.close();
+		return li;
+	}
+ 	
+ 	public String getHost(int wboardid) {
+ 		sqlSession = sqlSession();
+		Map map = new HashMap();
+		map.put("wboardid", wboardid);
+		
+		String li = sqlSession.selectOne(namespace+".getHost",map);
+		sqlSession.close();
+		return li;
+ 	}
 	
 	
 	//내가 오픈한 와글의 정보 수정
@@ -155,11 +175,12 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	 //상단바의 와글와글에서 모든 와글리스트 확인 가능 
 	 public List getWaglelist() {
 			sqlSession = sqlSession();
+			
 			List li = sqlSession.selectList(namespace+".getWaglelist");
 			sqlSession.close();
 			return li;
 	}
-	 
+
 	 //원하는 와글에 가입한다. 
 	 public void wagleJoin(int wboardid,String wagler,String wname) {
 			sqlSession = sqlSession();

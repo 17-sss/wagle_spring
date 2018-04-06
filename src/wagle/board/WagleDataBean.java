@@ -1,5 +1,7 @@
 package wagle.board;
 
+import java.util.List;
+
 public class WagleDataBean {
 
 	  
@@ -17,6 +19,37 @@ public class WagleDataBean {
 	  private String filename;
 	  private int filesize;
 	  
+	  private String host; //호스트만 가져오기
+	  private List member; //와글에 가입한 와글러만 가져오기
+	  private int all; //가입한 회원 수 구하기
+	  
+	public String getHost() {
+		String host = WaglelistDBMybatis.getInstance().getHost(wboardid);
+		return host;
+	}
+	
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public List getMember() {
+		List member = WaglelistDBMybatis.getInstance().getWagleMember(wboardid);
+		return member;
+	}
+
+	public void setMember(List member) {
+		this.member = member;
+	}
+
+	public int getAll() {
+		int all=WaglelistDBMybatis.getInstance().getWagleCount3(wboardid);
+		return all;
+	}
+	
+	public void setAll(int all) {
+		this.all = all;
+	}
+	
 	public int getWboardid() {
 		return wboardid;
 	}

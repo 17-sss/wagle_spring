@@ -44,7 +44,7 @@ public class BoardController{
 			this.wboardid = wboardid;
 		}
 		
-		if (pageNum!=null) {
+		if (pageNum!=null  && pageNum !="") {
 			this.pageNum = pageNum;
 		}
 	}
@@ -111,6 +111,7 @@ public class BoardController{
 		
 		String name=(String)session.getAttribute("name");
 		waglelist = dbWagle.getWaglelist();
+	
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date mTime = new Date ();
 		String today = sdf.format(mTime);
@@ -121,7 +122,6 @@ public class BoardController{
 	
 		return "/board/waglelist";
 	}
-	
 	
 	// 오픈와글
 	@RequestMapping("/wagleOpen")
@@ -262,10 +262,10 @@ public class BoardController{
 		
 		int all=dbWagle.getWagleCount3(wboardid);
 		
-		req.setAttribute("chk", chk);
-		req.setAttribute("wagle", wagle);
-		req.setAttribute("all",all);
-		req.setAttribute("wagler", name);
+		mv.addAttribute("chk", chk);
+		mv.addAttribute("wagle", wagle);
+		mv.addAttribute("all",all);
+		mv.addAttribute("wagler", name);
 		
 		
 	
@@ -277,8 +277,9 @@ public class BoardController{
 		int number = 0;
 		List articleList = null;
 
-		int boardid = wboardid;
-		
+	
+		String boardid = String.valueOf(wboardid);
+
 		count = dbReview.getArticleCount(boardid);
 		
 		if(count > 0) {
@@ -304,7 +305,7 @@ public class BoardController{
 		mv.addAttribute("bottomLine", bottomLine);
 		mv.addAttribute("endPage", endPage);
 		mv.addAttribute("pageCount", pageCount);
-	
+		
 		return "/board/wagleContent";
 	}
 	
@@ -326,17 +327,32 @@ public class BoardController{
 	//와글에서 탈퇴
 	@RequestMapping("/wagleOut")
 	public String wagleOut(HttpServletRequest req,
-			int wboardid)  throws Throwable {
+			int wboardid,Model mv)  throws Throwable {
 
+	
 		HttpSession session=req.getSession();
 		String wagler=(String)session.getAttribute("name");
-		
+		int chk=1;
 		dbWagle.wagleOut(wboardid,wagler);
+		mv.addAttribute("chk", chk);
+
 		
 		return "/board/wagleOut";
 	}
 	
+	//와글에서 강제 삭제
+	@RequestMapping("/wagleOut2")
+	public String wagleOut2(HttpServletRequest req,
+			int wboardid,String wagler,Model mv)  throws Throwable {
 
+		int chk=2;
+		dbWagle.wagleOut(wboardid,wagler);
+		mv.addAttribute("chk",chk);
+
+		
+		return "/board/wagleOut";
+	}
+	
 	// FAQ
 	@RequestMapping("/faqlist")
 	public String faqlist() throws Throwable {

@@ -52,8 +52,26 @@
 			${mylist.wname}</a></td>
 			<td align="center" width="100">${mylist.whost}</td>
 			<td align="center" width="100">
-			<i class="fa fa-user" style="font-size:20px"></i>
-			10/${mylist.wmax}</td>
+			
+			
+			<div class="w3-dropdown-hover">
+			    <button class="w3-btn w3-padding-small w3-white">
+			    <i class="fa fa-user" style="font-size:20px"></i>
+				${mylist.all}/${mylist.wmax}</button>
+			    <div class="w3-dropdown-content w3-bar-block w3-border" style="width:300px;">
+			    	<a href="host" class="w3-bar-item w3-button" style="color:red;"><b>${mylist.host}</b></a> 
+				    <c:forEach var="mylist3" items="${mylist.member}">
+						<a class="w3-bar-item w3-button">${mylist3.wagler}
+						
+						<button onclick="document.location.href='/wagle_spring/board/wagleOut2?wboardid=${mylist.wboardid}&wagler=${mylist3.wagler}'" class="w3-btn w3-padding-small w3-round w3-red w3-right">탈퇴</button>
+						&nbsp;&nbsp;
+						<button onclick="document.location.href='#'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지</button>
+						&nbsp;&nbsp;
+						</a>
+					</c:forEach>
+			    </div>
+			  </div>
+			</td>
 			<td align="center" width="100">
 			<button class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
 			onclick="document.location.href='/wagle_spring/board/wagleUpdate?wboardid=${mylist.wboardid}'">수정</button>
@@ -87,6 +105,7 @@
 		<td align="center" width="100">와글장</td>
 		<td align="center" width="100">탈퇴</td>
 		<td align="center" width="100">후기 작성</td>
+		<td align="center" width="100">쪽지 보내기</td>
 		</tr>
 	<c:forEach var="mylist" items="${mylist2}">	
 		<tr>
@@ -95,13 +114,30 @@
 		<td align="center" width="250">
 		<a style="cursor:pointer" onclick="document.location.href='/wagle_spring/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
 		${mylist.wname}</a></td>
-		<td align="center" width="100">${mylist.whost}</td>
+		<td align="center" width="100">${mylist.host}</td>
 		<td align="center" width="100">
 		<button onclick="document.location.href='/wagle_spring/board/wagleOut?wboardid=${mylist.wboardid}'" class="w3-btn w3-padding-small w3-round w3-red">탈퇴</button></td>
 		<td align="center" width="100">
 		<button  onclick="document.getElementById('reviewForm').style.display='block'"
 		class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey">후기 작성</button>
 		<%@include file="/WEB-INF/view/board/reviewForm.jsp" %>
+		</td>
+		<td align="center" width="100">
+			  <div class="w3-dropdown-hover">
+			    <button class="w3-btn w3-padding-small w3-white">♥♡♥</button>
+			    <div class="w3-dropdown-content w3-bar-block w3-border" style="width:250px;">
+			    	<a class="w3-bar-item w3-button" style="color:red;"><b>${mylist.host}</b>
+			    	&nbsp;&nbsp;
+			    	<button onclick="document.location.href='#'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지</button>
+			    	</a> 
+				    <c:forEach var="mylist3" items="${mylist.member}">
+						<a class="w3-bar-item w3-button">${mylist3.wagler}
+						&nbsp;&nbsp;
+						<button onclick="document.location.href='#'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지</button>
+						</a>
+					</c:forEach>
+			    </div>
+			  </div>
 		</td>
 		</tr>
 	</c:forEach>

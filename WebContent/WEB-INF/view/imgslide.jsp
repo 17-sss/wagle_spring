@@ -128,7 +128,7 @@ img {vertical-align: middle;}
 	<c:forEach var="imgslide" items="${imgslide}">
 		<div class="mySlides fade" style="width:100%;">
 		  <a style="cursor: pointer;" onclick="document.location.href='wagleContent?wboardid=${imgslide.wboardid}&wname='+encodeURI('${imgslide.wname}')">
-		  <img src="/wagle/wagleimg/${imgslide.filename}" style="height:400px;"></a>
+		  <img src="/wagle_spring/wagleimg/${imgslide.filename}" style="height:400px;"></a>
 		  <div class="text"><b>${imgslide.wname}</b></div>
 		</div>
 	</c:forEach>
