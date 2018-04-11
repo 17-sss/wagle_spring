@@ -6,24 +6,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-    	dateFormat: "yy-mm-dd"
-    });
-  } );
-  $( function() {
-	    $( "#datepicker2" ).datepicker({
-	    dateFormat: "yy-mm-dd",
-	    minDate:0
-	 });
-  } );
-  
+ <link rel="stylesheet" href="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+<script>
+	$(function(){
+	    $('#datepicker').appendDtpicker({
+	    	'locale':'ko',
+	    	"dateOnly": true,
+			"dateFormat": "YYYY-MM-DD",
+	    	});
+	});
 
-  </script>
+	$(function(){
+		$('#datepicker2').appendDtpicker({
+			'locale':'ko',
+	    	"dateOnly": true,
+			"dateFormat": "YYYY-MM-DD"/* ,
+			"futureOnly":true */
+	    	});
+	});
+
+	$(function(){
+		$('#datepicker3').appendDtpicker({
+			'locale':'ko',
+			"dateFormat": "YYYY-MM-DD h:m"/* ,
+			"futureOnly":true */
+			});
+	});
+
+	$(function(){
+		$('#datepicker4').appendDtpicker({
+			'locale':'ko',
+			"dateFormat": "YYYY-MM-DD h:m"/* ,
+			"futureOnly":true */
+			});
+	});
+</script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -117,6 +137,36 @@
 				<td style="color:red">기간을 늘려주세요 !</td>
 				</tr>
 				</c:if>
+					
+				<tr>
+				<c:if test="${today > wagle.weventdate1 || today > wagle.weventdate2}">
+				<td class="w3-panel w3-leftbar w3-border-yellow" style="color:red;"><b>다가오는 일정</b></td></c:if>
+				
+				<c:if test="${today <= wagle.weventdate1 && today <= wagle.weventdate2}">
+				<td class="w3-panel w3-leftbar w3-border-yellow">다가오는 일정</td></c:if>
+				<td>
+				<c:if test="${today > wagle.weventdate1}"><a style="color:red;"></c:if>
+				<c:if test="${today <= wagle.weventdate1}"><a></c:if>
+				일정1:</a>
+				<input type="text" name="wevent1" value="${wagle.wevent1}">
+				<input type="text" name="weventdate1" id="datepicker3" value="${wagle.weventdate1}"><br>
+				
+				<c:if test="${today > wagle.weventdate2}"><a style="color:red;"></c:if>
+				<c:if test="${today <= wagle.weventdate2}"><a></c:if>
+				일정2:</a>
+				<input type="text" name="wevent2" value="${wagle.wevent2}">
+				<input type="text" name="weventdate2" id="datepicker4" value="${wagle.weventdate2}">
+				</td>
+				</tr>
+				
+				<c:if test="${today > wagle.weventdate1 || today > wagle.weventdate2}">
+				<tr>
+				<td></td>
+				<td style="color:red">일정을 바꿔주세요 !</td>
+				</tr>
+				</c:if>
+				
+				
 				
 				<tr style="width:200px; height:200px">
 				<td class="w3-panel w3-leftbar w3-border-yellow">와글 소개</td>

@@ -34,6 +34,7 @@ import wagle.review.ReviewMyBatis;
 public class BoardController{
 	String wboardid="1";
 	String pageNum="1";
+
 	
 	WaglelistDBMybatis dbWagle = wagle.board.WaglelistDBMybatis.getInstance();
 	ReviewMyBatis dbReview = ReviewMyBatis.getInstance();
@@ -47,6 +48,7 @@ public class BoardController{
 		if (pageNum!=null  && pageNum !="") {
 			this.pageNum = pageNum;
 		}
+
 	}
 	
 	//메인 페이지
@@ -69,11 +71,11 @@ public class BoardController{
 		List mylist = null;
 		
 		HttpSession session=req.getSession();
-		String name=(String)session.getAttribute("name");
+		String email=(String)session.getAttribute("sessionEmail");
 		
-		count = dbWagle.getWagleCount1(name);
+		count = dbWagle.getWagleCount1(email);
 		if (count >0){
-			mylist = dbWagle.getWagles1(name);
+			mylist = dbWagle.getWagles1(email);
 			}
 		
 		model.addAttribute("mylist",mylist);
@@ -83,9 +85,9 @@ public class BoardController{
 
 		List mylist2 = null;
 		
-		count2 = dbWagle.getWagleCount2(name);
+		count2 = dbWagle.getWagleCount2(email);
 		if (count2 >0){
-			mylist2 = dbWagle.getWagles2(name);
+			mylist2 = dbWagle.getWagles2(email);
 			}
 		
 		model.addAttribute("mylist2",mylist2);
@@ -102,24 +104,39 @@ public class BoardController{
 
 	// 와글와글
 	@RequestMapping("/waglelist")
-	public String waglelist(HttpServletRequest req, Model model) throws Throwable {
+	public String waglelist(HttpServletRequest req, Model model,String wcategory) throws Throwable {
 
 		
 		List waglelist = null;
-
+		List searchwaglelist = null;
 		HttpSession session=req.getSession();
 		
+		
 		String name=(String)session.getAttribute("name");
+		
 		waglelist = dbWagle.getWaglelist();
-	
+		
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date mTime = new Date ();
 		String today = sdf.format(mTime);
+		System.out.println(wcategory);
 		
 		
-		model.addAttribute("waglelist",waglelist);
+		if (wcategory==null || wcategory.equals("전체")) {
+			
+			model.addAttribute("waglelist",waglelist);
+		}
+		
+		if (wcategory!=null) {
+			searchwaglelist = dbWagle.searchWaglelist(wcategory);
+			model.addAttribute("searchwaglelist",searchwaglelist);
+			System.out.println(searchwaglelist);
+		}
+		
 		model.addAttribute("today",today);
-	
+		model.addAttribute("wcategory",wcategory);
+		
 		return "/board/waglelist";
 	}
 	
@@ -128,10 +145,12 @@ public class BoardController{
 	public ModelAndView wagleOpen(HttpServletRequest req, WagleDataBean wagle) throws Throwable {
 		HttpSession  session = req.getSession();
 		String whost=(String)session.getAttribute("name");
+		String whostemail = (String)session.getAttribute("sessionEmail");
 		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("whost", whost);
+		mv.addObject("whostemail",whostemail);
 		mv.setViewName("/board/wagleOpen");
 		
 		return mv;
@@ -252,20 +271,20 @@ public class BoardController{
 		WagleDataBean wagle = dbWagle.getWagle(wboardid);
 		
 		HttpSession session=req.getSession();
-		String name=(String)session.getAttribute("name");
+		String wagleremail=(String)session.getAttribute("sessionEmail");
 		
-		if (name==null) {
-			name="nosession";
+		if (wagleremail==null) {
+			wagleremail="nosession";
 		}
 	
-		Boolean chk=dbWagle.waglechk(wboardid, name);
+		Boolean chk=dbWagle.waglechk(wboardid, wagleremail);
 		
 		int all=dbWagle.getWagleCount3(wboardid);
 		
 		mv.addAttribute("chk", chk);
 		mv.addAttribute("wagle", wagle);
 		mv.addAttribute("all",all);
-		mv.addAttribute("wagler", name);
+		mv.addAttribute("wagleremail", wagleremail);
 		
 		
 	
@@ -305,6 +324,7 @@ public class BoardController{
 		mv.addAttribute("bottomLine", bottomLine);
 		mv.addAttribute("endPage", endPage);
 		mv.addAttribute("pageCount", pageCount);
+	
 		
 		return "/board/wagleContent";
 	}
@@ -313,12 +333,13 @@ public class BoardController{
 	//와글에 가입
 	@RequestMapping("/wagleJoin")
 	public String wagleJoin(HttpServletRequest req,
-			 String wname,int wboardid)  throws Throwable {
+			 String wname,int wboardid,String wcategory)  throws Throwable {
 
 		HttpSession session=req.getSession();
 		String wagler=(String)session.getAttribute("name");
-	
-		dbWagle.wagleJoin(wboardid,wagler,wname);
+		String wagleremail=(String)session.getAttribute("sessionEmail");
+		
+		dbWagle.wagleJoin(wboardid,wagler,wcategory,wname,wagleremail);
 
 		return "/board/wagleJoin";
 				
@@ -331,11 +352,11 @@ public class BoardController{
 
 	
 		HttpSession session=req.getSession();
-		String wagler=(String)session.getAttribute("name");
+		String wagleremail=(String)session.getAttribute("sessionEmail");
 		int chk=1;
-		dbWagle.wagleOut(wboardid,wagler);
+		dbWagle.wagleOut(wboardid,wagleremail);
 		mv.addAttribute("chk", chk);
-
+		
 		
 		return "/board/wagleOut";
 	}
@@ -343,10 +364,10 @@ public class BoardController{
 	//와글에서 강제 삭제
 	@RequestMapping("/wagleOut2")
 	public String wagleOut2(HttpServletRequest req,
-			int wboardid,String wagler,Model mv)  throws Throwable {
+			int wboardid,String wagleremail,Model mv)  throws Throwable {
 
 		int chk=2;
-		dbWagle.wagleOut(wboardid,wagler);
+		dbWagle.wagleOut(wboardid,wagleremail);
 		mv.addAttribute("chk",chk);
 
 		

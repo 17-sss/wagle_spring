@@ -32,12 +32,13 @@
  	<table class="w3-table w3-bordered" >
 		<tr class="w3-yellow">
 			<td align="center" width="50">번호</td>
+			<td align="center" width="100">카테고리</td>
 			<td align="center" width="250">와 글</td>
 			<td align="center" width="100">와글장</td>
 			<td align="center" width="100">와글러(/)</td>
-			<td align="center" width="100">수정</td>
+			<td align="center" width="50">수정</td>
 		</tr>
-    
+  
     	<c:forEach var="mylist" items="${mylist}">
     	<c:if test="${today > mylist.wend}">
 		<tr style="color:red">
@@ -47,6 +48,7 @@
 		</c:if>
 			<td align="center" width="50">${count}</td>
 			<c:set var="count" value="${count-1}"/>
+			<td align="center" width="100">${mylist.wcategory}</td>
 			<td align="center" width="250">
 			<a style="cursor:pointer" onclick="document.location.href='/wagle_spring/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
 			${mylist.wname}</a></td>
@@ -59,20 +61,19 @@
 			    <i class="fa fa-user" style="font-size:20px"></i>
 				${mylist.all}/${mylist.wmax}</button>
 			    <div class="w3-dropdown-content w3-bar-block w3-border" style="width:300px;">
-			    	<a href="host" class="w3-bar-item w3-button" style="color:red;"><b>${mylist.host}</b></a> 
+			    	<a href="host" class="w3-bar-item w3-button" style="color:red;"><b>${mylist.whost}</b></a> 
 				    <c:forEach var="mylist3" items="${mylist.member}">
 						<a class="w3-bar-item w3-button">${mylist3.wagler}
-						
-						<button onclick="document.location.href='/wagle_spring/board/wagleOut2?wboardid=${mylist.wboardid}&wagler=${mylist3.wagler}'" class="w3-btn w3-padding-small w3-round w3-red w3-right">탈퇴</button>
-						&nbsp;&nbsp;
-						<button onclick="document.location.href='#'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지</button>
+						<button onclick="document.location.href='/wagle_spring/board/wagleOut2?wboardid=${mylist.wboardid}&wagleremail=${mylist3.wagleremail}'" class="w3-btn w3-padding-small w3-round w3-red w3-right">탈퇴</button>
+						&nbsp;&nbsp;  
+						<button onclick="document.location.href='${mylist3.wagleremail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
 						&nbsp;&nbsp;
 						</a>
 					</c:forEach>
 			    </div>
 			  </div>
 			</td>
-			<td align="center" width="100">
+			<td align="center" width="50">
 			<button class="w3-btn w3-padding-small w3-round w3-white w3-border w3-hover-light-grey"
 			onclick="document.location.href='/wagle_spring/board/wagleUpdate?wboardid=${mylist.wboardid}'">수정</button>
 			</td>
@@ -101,6 +102,7 @@
  		<table class="w3-table w3-bordered" style="margin-bottom:100px;">
 		<tr class="w3-yellow">
 		<td align="center" width="50">번호</td>
+		<td align="center" width="100">카테고리</td>
 		<td align="center" width="250">와 글</td>
 		<td align="center" width="100">와글장</td>
 		<td align="center" width="100">탈퇴</td>
@@ -111,6 +113,7 @@
 		<tr>
 		<td align="center" width="50">${count2}</td>
 		<c:set var="count2" value="${count2-1}"/>
+		<td align="center" width="100">${mylist.wcategory}</td>
 		<td align="center" width="250">
 		<a style="cursor:pointer" onclick="document.location.href='/wagle_spring/board/wagleContent?wboardid=${mylist.wboardid}&wname='+encodeURI('${mylist.wname}')">
 		${mylist.wname}</a></td>
@@ -124,16 +127,16 @@
 		</td>
 		<td align="center" width="100">
 			  <div class="w3-dropdown-hover">
-			    <button class="w3-btn w3-padding-small w3-white">♥♡♥</button>
+			    <button class="w3-btn fa fa-envelope-o w3-border w3-border-yellow w3-white"></button>
 			    <div class="w3-dropdown-content w3-bar-block w3-border" style="width:250px;">
 			    	<a class="w3-bar-item w3-button" style="color:red;"><b>${mylist.host}</b>
 			    	&nbsp;&nbsp;
-			    	<button onclick="document.location.href='#'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지</button>
+			    	<button onclick="document.location.href='${mylist.hostemail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
 			    	</a> 
 				    <c:forEach var="mylist3" items="${mylist.member}">
 						<a class="w3-bar-item w3-button">${mylist3.wagler}
 						&nbsp;&nbsp;
-						<button onclick="document.location.href='#'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지</button>
+						<button onclick="document.location.href='${mylist3.wagleremail}'" class="w3-btn fa fa-envelope-o w3-round w3-yellow w3-right"></button>
 						</a>
 					</c:forEach>
 			    </div>

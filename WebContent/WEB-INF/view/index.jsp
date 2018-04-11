@@ -9,6 +9,6 @@
 <body>
 
 <% response.sendRedirect(request.getContextPath()+"/board/index"); %>
-ss
+
 </body>
 </html>

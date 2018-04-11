@@ -31,7 +31,7 @@
 	        	background-size: cover;
 			}
 			.section_img1 {
-				background-image: url(/wagle_spring/img/3.jpg);
+				background-color: black;
 			}
 			
 			/* 수평선 설정  */
@@ -78,7 +78,6 @@
 	<header>
 		<div class="w3-center w3-text-white">
 			<span class="underline underlind-red custom-font" style="font-size: 5em;"><br>Wagle<br></span>
-			
 			<span style="font-size: 1em;">
              	너네가 알아서<br>보고 와글 들어가거라<br>업데이트 겁나 안되네 똥컴..<br><br><b>기분좋다 ㅎㅎㅎㅎ</b>
            	</span>
@@ -93,8 +92,13 @@
 	<div class="w3-row w3-section w3-center">
 	    <div class="w3-rest">
 	      
-	      <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
-	      <input class="w3-button w3-yellow w3-small" value="Search" type="button" onclick="#">
+	      <!-- <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
+	      <input class="w3-button w3-yellow w3-small" value="Search" type="button" onclick="#"> -->
+	      <input class="w3-btn w3-yellow w3-small" type="button" value="전체" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('전체')">
+          <input class="w3-btn w3-yellow w3-small" type="button" value="스포츠" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('스포츠')">
+          <input class="w3-btn w3-yellow w3-small" type="button" value="여행" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('여행')">
+          <input class="w3-btn w3-yellow w3-small" type="button" value="요리/음식" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('요리/음식')">
+          <input class="w3-btn w3-yellow w3-small" type="button" value="인문학/책" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('인문학/책')">
 	      
 	    </div>
 	</div>
@@ -104,7 +108,7 @@
 
 <!-- 그룹 사진 리스트 -->
 <div class="w3-container w3-margin-top " style="margin-left: 10%; margin-right: 10%;">
-
+	<c:if test="${wcategory eq '전체' || wcategory == null}">
 	<c:forEach var="waglelist" items="${waglelist}">
 		<!-- 기간이 지난 와글은 표시하지 않도록 해준다. -->
 	 	<c:if test="${today <= waglelist.wend}">
@@ -125,7 +129,30 @@
 		</div>
 		</c:if>
 	 </c:forEach>
+	 </c:if>
 	 
+	<c:if test="${wcategory ne '전체'}">
+	 <c:forEach var="waglelist" items="${searchwaglelist}">
+		<!-- 기간이 지난 와글은 표시하지 않도록 해준다. -->
+	 	<c:if test="${today <= waglelist.wend}">
+		 <div class="w3-third w3-container w3-margin-bottom">
+			<div class="w3-container w3-white w3-padding w3-center w3-round w3-button w3-border"  style="height:100%; width:100%;" onclick="document.location.href='wagleContent?wboardid=${waglelist.wboardid}&wname='+encodeURI('${waglelist.wname}')">
+				<img src="<%=request.getContextPath()%>/wagleimg/${waglelist.filename}" alt="Test" class="autoimg">
+				<h4><b>${waglelist.wname}</b></h4>
+				<span class="w3-text-gray">와글 지기 : ${waglelist.whost}</span>
+				<div>
+					<hr>
+					<span class="w3-left">
+						<b>기간:&nbsp;</b>
+						<span>${waglelist.wstart} ~ ${waglelist.wend}</span>
+					</span>
+					<i class="fa fa-user w3-right" style="font-size: 13pt;">&nbsp;<span>${waglelist.all}/${waglelist.wmax}</span></i>
+				</div>
+			</div>
+		</div>
+		</c:if>
+	 </c:forEach>
+	 </c:if>
 	 
 	
 </div>

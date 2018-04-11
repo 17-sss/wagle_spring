@@ -6,14 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Insert title here</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!--   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+	
 
-
-
-  
-  <script>
+<!--   <script>
   $( function() {
     $( "#datepicker" ).datepicker({
     		dateFormat: "yy-mm-dd",
@@ -26,16 +24,69 @@
 			minDate:0
 	});
   } );
+  
+  $( function() {
+		$( "#datepicker3" ).datepicker({	
+		  		dateFormat: "yy-mm-dd",
+		  		minDate:0
+		});
+	  } );
+  
+  $( function() {
+		$( "#datepicker4" ).datepicker({	
+		  		dateFormat: "yy-mm-dd",
+				minDate:0
+		});
+	  } );
 
   </script>
+ -->
+<link rel="stylesheet" href="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+<script>
+	$(function(){
+	    $('#datepicker').appendDtpicker({
+	    	'locale':'ko',
+	    	"dateOnly": true,
+			"dateFormat": "YYYY-MM-DD",
+			"futureOnly":true
+	    	});
+	});
 
+	$(function(){
+		$('#datepicker2').appendDtpicker({
+			'locale':'ko',
+	    	"dateOnly": true,
+			"dateFormat": "YYYY-MM-DD",
+			"futureOnly":true
+	    	});
+	});
 
+	$(function(){
+		$('#datepicker3').appendDtpicker({
+			'locale':'ko',
+			"dateFormat": "YYYY-MM-DD h:m",
+			"futureOnly":true
+			});
+	});
+
+	$(function(){
+		$('#datepicker4').appendDtpicker({
+
+				'locale':'ko',
+				"dateFormat": "YYYY-MM-DD h:m",
+				"futureOnly":true
+			});
+	});
+</script>
 
 </head>
 <body>
 	<center>
 	<form method="post" enctype="multipart/form-data" action="wagleOpenPro">
 		<input type="hidden" name="whost" value="${whost}"/>
+		<input type="hidden" name="whostemail" value="${whostemail}"/>
 		<h4>Wagle Open</h4>
 	
 			<table class="w3-table-w3-border" cellspacing="10" style="margin-bottom:100px;">
@@ -86,10 +137,26 @@
 				
 				<td class="w3-panel w3-leftbar w3-border-yellow">기간</td>
 				<td>
-				<input type="text" name="wstart" id="datepicker">&nbsp;&nbsp;~&nbsp;&nbsp;
-				<input type="text" name="wend" id="datepicker2">
+				<input type="text" name="wstart" id="datepicker" value="">&nbsp;&nbsp;~&nbsp;&nbsp;
+				<input type="text" name="wend" id="datepicker2" value="">
+
 				</td>
 				</tr>
+				
+				<tr>
+				
+				<td class="w3-panel w3-leftbar w3-border-yellow">다가오는 일정</td>
+				<td>
+				일정1:
+				<input type="text" name="wevent1">
+				<input type="text" name="weventdate1" id="datepicker3" value=""><br>
+				일정2:
+				<input type="text" name="wevent2">
+				<input type="text" name="weventdate2" id="datepicker4" value="">
+				</td>
+				</tr>
+				
+				
 				<tr style="width:200px; height:200px">
 				<td class="w3-panel w3-leftbar w3-border-yellow">와글 소개</td>
 				<td><textarea class="w3-input w3-border w3-margin-bottom" name="wintro" rows="4" cols="10"></textarea></td>

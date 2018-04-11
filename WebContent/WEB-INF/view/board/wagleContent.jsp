@@ -101,7 +101,9 @@
 			<hr>
 		</div>
 		<div class="w3-container">
-			<p><b>와글장 :</b>${wagle.whost}</p>
+			<p><b>와글 지기 :</b>${wagle.whost}
+			<button onclick="document.location.href='${wagle.whostemail}'" class="w3-btn w3-padding-small w3-round w3-yellow w3-right">쪽지 보내기</button>
+			</p>
 			<p>${wagle.wprofile}</p>
 			<br>
 		</div>
@@ -144,22 +146,19 @@
 		
 		<div class="w3-container w3-margin-bottom">
 			<h5 class="w3-leftbar w3-border-yellow">&nbsp;&nbsp;다가오는 이벤트</h5>
-			<img src="<%=request.getContextPath()%>/img/wagle.jpg" alt="wagle-schedule" class="w3-left w3-circle w3-margin-right" style="width: 60px; height: 60px"> 
-			<span class="w3-large">2018.04.01~2018.04.08</span>
+			<img src="<%=request.getContextPath()%>/wagleimg/${wagle.filename}" alt="wagle-schedule" class="w3-left w3-circle w3-margin-right" style="width: 60px; height: 60px"> 
+			<span class="w3-large">${wagle.weventdate1}</span>
 			<br>
-			<span class="w3-medium">1주차: 디자인씽킹 미니 워크숍 </span>
-			<br>
-			<span class="w3-small w3-text-gray">[러닝 스팟] 쌍용강북교육센터</span>
+			<span class="w3-medium">${wagle.wevent1}</span>
 		</div>
 		
 		
 		<div class="w3-container w3-margin-bottom">
-			<img src="<%=request.getContextPath()%>/img/wagle.jpg" alt="wagle-schedule" class="w3-left w3-circle w3-margin-right" style="width: 60px; height: 60px"> 
-			<span class="w3-large">2018.04.09~2018.04.16</span>
+			<img src="<%=request.getContextPath()%>/wagleimg/${wagle.filename}" alt="wagle-schedule" class="w3-left w3-circle w3-margin-right" style="width: 60px; height: 60px"> 
+			<span class="w3-large">${wagle.weventdate2}</span>
 			<br>
-			<span class="w3-medium">2주차: 공감하기 (인터뷰, 설문조사, 직접 체험하기) </span>
-			<br>
-			<span class="w3-small w3-text-gray">[러닝 스팟] 쌍용강북교육센터</span>
+			<span class="w3-medium">${wagle.wevent2} </span>
+			<br><br>
 		</div>
 		
 		
@@ -211,11 +210,11 @@
 <div class="w3-center">
 		<c:if test="${count>0}">
 			<c:if test="${startPage > bottomLine}">
-				<a href="board1?pageNum=${startPage - bottomLine}">[이전]</a>
+				<a href="wagleContent?wboardid=${wagle.wboardid}&wname=${wagle.wname}&pageNum=${startPage - bottomLine}">[이전]</a>
 			</c:if>
 		
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="board1?pageNum=${i}">
+				<a href="wagleContent?wboardid=${wagle.wboardid}&wname=${wagle.wname}&pageNum=${i}">
 
 			<c:if test="${i != currentPage}">[${i}]</c:if>
 				<c:if test="${i == currentPage}">
@@ -225,7 +224,7 @@
 			</c:forEach>
 		
 			<c:if test="${endPage<pageCount}">
-			<a href="board1?pageNum=${startPage + bottomLine}">[다음]</a>
+			<a href="wagleContent?wboardid=${wagle.wboardid}&wname=${wagle.wname}&pageNum=${startPage + bottomLine}">[다음]</a>
 			</c:if>
 	</c:if>	
 
@@ -234,12 +233,12 @@
 </div>	
 <br><br>
 
-<c:if test="${wagler ne 'nosession'}"> 
+<c:if test="${wagleremail ne 'nosession'}"> 
 <c:if test="${sessionScope.name ne wagle.whost}">
 	<c:if test="${!chk}">
 		<c:if test="${all < wagle.wmax}">
 		<div class="w3-center w3-margin-bottom">
-		<button class="w3-button w3-center w3-yellow w3-large" onclick="document.location.href='wagleJoin?wboardid=${wagle.wboardid}&wname='+encodeURI('${wagle.wname}')">Wagle 지원하기</button>
+		<button class="w3-button w3-center w3-yellow w3-large" onclick="document.location.href='wagleJoin?wboardid=${wagle.wboardid}&wname='+encodeURI('${wagle.wname}')+'&wcategory='+encodeURI('${wagle.wcategory}')">Wagle 지원하기</button>
 		<br><br>
 		</div>
 		</c:if>

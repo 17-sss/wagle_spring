@@ -21,7 +21,8 @@
 				    <c:if test="${sessionEmail != null}">
 				    <tr>
 				      <td><b>ÀÛ¼ºÀÚ</b>&nbsp;&nbsp;</td>
-				      <td><input class="w3-input w3-animate-input" name="writer" style="width:50%" type="text" value="${name}"> </td>
+				      <td><a style="width:50%">${name}</a></td>
+				      <input type="hidden" name="writer" value="${name}"/>
 				    </tr>
 				    </c:if>
 				    <tr>

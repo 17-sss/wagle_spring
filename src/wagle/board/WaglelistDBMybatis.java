@@ -43,10 +43,10 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	
 	//내가 오픈한 와글 갯수
-	public int getWagleCount1(String name) {
+	public int getWagleCount1(String email) {
 		sqlSession = sqlSession();
 		Map map = new HashMap();
-		map.put("name", name);
+		map.put("email", email);
 		
 		int number=sqlSession.selectOne(namespace+".getWagleCount1",map);
 		
@@ -56,10 +56,10 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	
 	//내가 가입한 와글 갯수 
-	public int getWagleCount2(String name) {
+	public int getWagleCount2(String email) {
 		sqlSession = sqlSession();
 		Map map = new HashMap();
-		map.put("name", name);
+		map.put("email", email);
 		
 		int number=sqlSession.selectOne(namespace+".getWagleCount2",map);
 		
@@ -82,10 +82,10 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	
 	//내가 오픈한 와글의 리스트
-	public List getWagles1(String name) {
+	public List getWagles1(String email) {
 		sqlSession = sqlSession();
 		Map map = new HashMap();
-		map.put("name", name);
+		map.put("email", email);
 
 		List li = sqlSession.selectList(namespace+".getWagles1",map);
 		
@@ -94,10 +94,10 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	
 	//내가 가입한 와글의 리스트 
-	public List getWagles2(String name) {
+	public List getWagles2(String email) {
 		sqlSession = sqlSession();
 		Map map = new HashMap();
-		map.put("name", name);
+		map.put("email", email);
 
 		
 		List li = sqlSession.selectList(namespace+".getWagles2",map);
@@ -117,14 +117,26 @@ public class WaglelistDBMybatis extends MybatisConnector{
 		return li;
 	}
  	
+ 	//호스트 정보 구하기
  	public String getHost(int wboardid) {
  		sqlSession = sqlSession();
 		Map map = new HashMap();
 		map.put("wboardid", wboardid);
 		
-		String li = sqlSession.selectOne(namespace+".getHost",map);
+		String host = sqlSession.selectOne(namespace+".getHost",map);
 		sqlSession.close();
-		return li;
+		return host;
+ 	}
+ 	
+ 	public String getHostemail(int wboardid) {
+ 		sqlSession = sqlSession();
+		Map map = new HashMap();
+		map.put("wboardid", wboardid);
+		
+		String hostemail = sqlSession.selectOne(namespace+".getHostemail",map);
+	
+		sqlSession.close();
+		return hostemail;
  	}
 	
 	
@@ -181,13 +193,25 @@ public class WaglelistDBMybatis extends MybatisConnector{
 			return li;
 	}
 
+	 public List searchWaglelist(String wcategory) {
+		 	sqlSession = sqlSession();
+			Map map = new HashMap();
+			map.put("wcategory", wcategory);
+			
+			List li = sqlSession.selectList(namespace+".searchWaglelist",map);
+			sqlSession.close();
+			return li;
+	 }
+	 
 	 //원하는 와글에 가입한다. 
-	 public void wagleJoin(int wboardid,String wagler,String wname) {
+	 public void wagleJoin(int wboardid,String wagler,String wcategory,String wname,String wagleremail) {
 			sqlSession = sqlSession();
 			Map map = new HashMap();
 			map.put("wboardid", wboardid);
 			map.put("wagler", wagler);
 			map.put("wname", wname);
+			map.put("wcategory", wcategory);
+			map.put("wagleremail",wagleremail);
 
 
 			sqlSession.insert(namespace+".wagleJoin",map);
@@ -197,11 +221,11 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	 
 	 //원치 않는 와글에서 탈퇴한다.
-	 public int wagleOut(int wboardid,String wagler) throws Exception {
+	 public int wagleOut(int wboardid,String wagleremail) throws Exception {
 			sqlSession = sqlSession();
 			Map map = new HashMap();
 			map.put("wboardid", wboardid);
-			map.put("wagler", wagler);
+			map.put("wagleremail", wagleremail);
 			
 			int chk=sqlSession.delete(namespace+".wagleOut",map);
 			
@@ -219,11 +243,11 @@ public class WaglelistDBMybatis extends MybatisConnector{
 	}
 	 
 	//와글와글 리스트에서 내가 가입한 와글인지 아닌지 체크하여 버튼의 활성화 여부를 결정한다
-	public boolean waglechk(int wboardid, String wagler) {
+	public boolean waglechk(int wboardid, String wagleremail) {
 		sqlSession = sqlSession();
 		Map map = new HashMap();
 		map.put("wboardid", wboardid);
-		map.put("wagler", wagler);
+		map.put("wagleremail", wagleremail);
 		boolean li=true;
 		Map<String,String> map2=sqlSession.selectOne(namespace+".waglechk",map);
 		
