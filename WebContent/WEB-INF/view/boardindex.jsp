@@ -3,128 +3,145 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>
-<meta charset="EUC-KR">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Coustard|Righteous" rel="stylesheet">
-	<head>
-	<title>welcome to Wagle!</title>
-	<style>
-		body{
-			margin:0;
-			padding:0;
-		}
-		section{
-			height: 100vh;
-        	overflow: hidden;
-        	background-attachment: fixed;
-        	background-size: cover;
+<html lang="en" >
 
-		}
-		.wagle_title{
-			background-image: url(/wagle_spring/img/wagle.jpg);
-			opacity: 0.7;
-    		
-			/* font-family: 'Righteous', cursive; */   
-			font-family: 'Coustard', serif;  
-		}
-		.wagle_title h1{
-			/* font-family: 'Righteous', cursive; */ 
-		 	font-family: 'Coustard', serif;
-		}
-		.wagle_intro{
-			background-color: white;
-		}
-		.wordcloud{
-			background-color: lightgrey;
-		}
-		.waglewagle{
-			background-color: white;
-		}
-		.contact{
-			background-image: url(/wagle_spring/img/wagle.jpg);
-			opacity: 0.7;
-		}
-		.contact h1{
-			/* font-family: 'Righteous', cursive; */
-			font-family: 'Coustard', serif;
-		}
-		header{
-			color: white;
-       		max-width: 50%;
-        	position: relative;
-        	left: 50%;
-        	top: 50%;
-        	transform: translateX(-50%) translateY(-50%);
-        /*글,내용을 가운데에 놓기위한 css3값*/
-        	font-size: 1.5rem;
-        	text-align: center;
-		}
-		.top header{
-			color: white;
-			font-size: 2.4rem;
-		}
+<head>
+  <meta charset="UTF-8">
+  <!-- sidebar-->
+  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- parallax effect -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/parallax.css">
+  
+  <!-- wordeffect -->
+  	<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/letter.css">
 
-
-		w3-top{
-			/* font-family: 'Righteous', cursive; */ 
-			font-family: 'Coustard', serif;
-		}
-		
-	</style>
- <style>
-
- .w3-bar{
- box-shadow:0 5px 7px 0 rgba(0,0,0,0.16), 0 10px 8px 0 rgba(0,0,0,0.12);
- }
- 
-</style>
+  <!-- image slide -->
+  	<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slide.css">  
+   
 </head>
 
 <body>
-
-	<section class="wagle_title">
-		<header>
-		<h1 style="font-size: 15rem;">Wagle</h1>
-			<h1>Want to know more about us?</h1>
-			</header>
-		  	  
-		  	  <c:if test="${sessionEmail != null}">
-			  <button class="w3-btn w3-black w3-display-middle w3-large" style="margin-top: 300px;"
-			  disabled>Hello!</button>
-			  </c:if>
-			  
-			  <c:if test="${sessionEmail == null}">
-			  <button class="w3-btn w3-black w3-display-middle w3-large" style="margin-top: 300px;"
-			  onclick="document.getElementById('login').style.display='block'">Enter</button>
-			  </c:if>
-			  
-			  <%@include file="loginmodal.jsp" %>
-	</section>
-	<section class="wagle_intro">
-		<header>
-			<h2 style="color:black;">와글와글은 이런이런 곳이랍니다. 소개글</h2>
-		</header>
-	</section>
-	<section class="wordcloud">
-		<header>
-			<h2 style="color:black;">wordcloud
-			</h2>
-		</header>
-	</section>
-	<section class="waglewagle">
-		<header>
-		<h2 style="color:black;">개설된 와글 이미지 슬라이드 삽입</h2>
-		 <%@include file="/WEB-INF/view/imgslide.jsp" %>
-		</header>
-	</section>
-	<section class="contact">
-		<header>
-			<h1>Contact us!<br/>
-			wagle@gmail.com</h1>
-		</header>
-	</section>
+  <!-- <div class="container"> -->
+  <section class="background">
+    <div class="content-wrapper">
+ 
+	<!-- side nav -->
 	
+		<div class="w3-container w3-display-left" style="margin-top: 0px;top: 180px;">
+		  <div class="w3-dropdown-hover">
+		    <button class="w3-button" style="background-color:#FCB043;">
+		    	<i class="fa fa-reorder" style="font-size:36px" onclick="document.location.href='#about'"></i>
+		    </button>
+		    <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-opacity">
+		      <a href="#about" class="w3-bar-item w3-button">About Wagle</a>
+		      <a href="${pageContext.request.contextPath}/board/wagleOpen" class="w3-bar-item w3-button">와글열기</a>
+		      <a href="${pageContext.request.contextPath}/board/waglelist" class="w3-bar-item w3-button">와글와글</a>
+		      
+		    <div class="w3-bar-item w3-button" onclick="myAccFunc()">
+				  My Page <i class="fa fa-caret-down"></i></div>
+				  <div id="mypage" class="w3-hide w3-white w3-card-4">
+				  <c:if test="${sessionEmail == null}">  
+				    <a href="${pageContext.request.contextPath}/member/joinForm" class="w3-bar-item w3-button">Login</a>
+				  </c:if>
+				  <c:if test="${sessionEmail != null}">
+				    <a href="${pageContext.request.contextPath}/board/mylist" class="w3-bar-item w3-button">와글관리</a>
+				    <a href="/wagle_spring/member/updateForm?email=${sessionEmail}" class="w3-bar-item w3-button">회원정보</a>
+				   	<a href="${pageContext.request.contextPath}/member/logout" class="w3-bar-item w3-button">Logout</a>
+				  </c:if>
+			</div>
+		      <a href="${pageContext.request.contextPath}/board/faqlist" class="w3-bar-item w3-button">FAQ</a>
+		      
+		      
+		    </div>
+		  </div>
+		</div>
+
+      <h1>
+      	<br>Wagle
+		  <br>&nbsp;Wagle
+	  </h1>
+		<i class="fa fa-angle-double-down" style="font-size:48px; color:#eb4a2c;"></i>
+		
+    </div>
+  </section>
+  
+  
+  <section class="background">
+    <div class="content-wrapper" id="about">
+      <p class="content-title w3-display-topmiddle" style="margin-top: 200px;font-size: 7vh;">together is better</p>
+		     <div class="w3-display-middle" style="width:40%; max-width:500px; margin-top:80px;">
+		    	<img src="${pageContext.request.contextPath}/img/together.jpg" alt="Norway" style="width:100%;">
+			 </div>
+	  	   <p class="content-subtitle w3-display-bottommiddle" style="margin-bottom:100px;">
+	  	   		비슷한 관심사와 가치관을 나눌 수 있는 소통의 공간<br/>
+	  	   		원하는 것을 배울 수 있는 자유<br/>
+	  	   		함께 만들어가는 커뮤니티 </p>
+	      <button class="w3-btn w3-display-bottommiddle" onclick="document.location.href='${pageContext.request.contextPath}/member/joinForm'"
+	      style="width: 20%;">와글과 함께 하실래요?</button>
+
+    </div>
+  </section>
+  
+  
+  <section class="background">
+    <div class="content-wrapper">
+      <p class="content-title">워드클라우드</p>
+      <p class="content-subtitle">관심사 카테고리</p>
+     
+      <button class="w3-btn w3-display-middle" onclick="document.location.href='${pageContext.request.contextPath}/board/wagleOpen'"
+      style="width: 20%; margin-top: 240px;">와글지기가 되어주세요!</button>
+      
+    </div>
+  </section>
+  
+  
+  <section class="background">
+    <div class="content-wrapper">
+      <%-- <%@include file="/WEB-INF/view/imgslide.jsp" %> --%>
+    
+      <!-- image slide  -->
+      	<div align="center" class="fond">
+  		  <div class="contener_slideshow" style="margin-top: 100px;">
+		    <div class="contener_slide">
+		      <div class="slid_1"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_1.png"></div>
+		      <div class="slid_2"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_2.png"></div>
+		      <div class="slid_3"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_3.png"></div>
+		    <div class="slid_4"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_1.png"></div>
+		  <div class="slid_5"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_1.png"></div>
+		    </div>
+		  </div>  
+		</div>
+     
+      <button class="w3-btn w3-display-middle" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist'" 
+      	style="width: 20%; margin-top: 240px;">와글리스트 더보기</button>
+    </div>
+  </section>
+
+
+
+  	<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+	<script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script  src="${pageContext.request.contextPath}/js/parallax.js"></script>
+	<script>
+	function myAccFunc() {
+	    var x = document.getElementById("mypage");
+	    if (x.className.indexOf("w3-show") == -1) {
+	        x.className += " w3-show";
+	        x.previousElementSibling.className += " w3-green";
+	    } else { 
+	        x.className = x.className.replace(" w3-show", "");
+	        x.previousElementSibling.className = 
+	        x.previousElementSibling.className.replace(" w3-green", "");
+	    }
+	}
+
+	</script>
 </body>
+
 </html>
