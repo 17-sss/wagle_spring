@@ -104,7 +104,7 @@
   <section class="background">
     <div class="content-wrapper">
     
-      <!-- image slide  -->
+      <!-- image slide-  -->
       <div align="center" class="fond">
           <div class="contener_slideshow" style="margin-top: 100px;">
           <div class="contener_slide">
