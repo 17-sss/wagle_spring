@@ -103,20 +103,21 @@
   
   <section class="background">
     <div class="content-wrapper">
-      <%-- <%@include file="/WEB-INF/view/imgslide.jsp" %> --%>
     
       <!-- image slide  -->
-      	<div align="center" class="fond">
-  		  <div class="contener_slideshow" style="margin-top: 100px;">
-		    <div class="contener_slide">
-		      <div class="slid_1"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_1.png"></div>
-		      <div class="slid_2"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_2.png"></div>
-		      <div class="slid_3"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_3.png"></div>
-		    <div class="slid_4"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_1.png"></div>
-		  <div class="slid_5"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/img_diapo_1.png"></div>
-		    </div>
-		  </div>  
-		</div>
+      <div align="center" class="fond">
+          <div class="contener_slideshow" style="margin-top: 100px;">
+          <div class="contener_slide">
+           <c:forEach var="imgslide" items="${imgslide}">
+                       <div class="slid_${number}"><a onclick="document.location.href='wagleContent?wboardid=${imgslide.wboardid}&wname='+encodeURI('${imgslide.wname}')">
+              <c:set var="number" value="${number-1}"/>
+              <img src="/wagle_spring/wagleimg/${imgslide.filename}" style="width:610px; height:300px;"></a></div>
+          </c:forEach> 
+
+
+          </div>
+        </div>                                                                                                                                       
+      </div>
      
       <button class="w3-btn w3-display-middle" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist'" 
       	style="width: 20%; margin-top: 240px;">와글리스트 더보기</button>
