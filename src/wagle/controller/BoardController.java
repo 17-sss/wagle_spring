@@ -55,8 +55,11 @@ public class BoardController{
 	@RequestMapping("/index")
 	public String index(Model model) {
 		
+		int number=5;
 		List imgslide=dbWagle.imgslide();
 		model.addAttribute("imgslide",imgslide);
+		model.addAttribute("number",number);
+		
 		System.out.println(imgslide);
 		
 		return "boardindex";
