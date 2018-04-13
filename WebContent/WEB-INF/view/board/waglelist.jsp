@@ -2,15 +2,26 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<style type="text/css">
+<html lang="en" class="no-js" style="background-color:#fff;">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+		
+		<link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Playfair+Display:900" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/magneto.css" />
+		
+		
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>		
+	
+		<style type="text/css">
 			/* 임시 백그라운드 배경. */
 			.bgimg {
-				background-image: url("/wagle/img/gray.jpg");
 				min-height: 100%;
 				background-position: center;
 				background-size: cover;
@@ -31,7 +42,7 @@
 	        	background-size: cover;
 			}
 			.section_img1 {
-				background-color: black;
+			/* 	background-color: black; */
 			}
 			
 			/* 수평선 설정  */
@@ -68,45 +79,32 @@
 			}
 			
 	</style>
-	<title>Wagle List</title>
-</head>
-
-<body class="bgimg">
-
-<!-- 설명 -->
-<section class="section_img1">
-	<header>
-		<div class="w3-center w3-text-white">
-			<span class="underline underlind-red custom-font" style="font-size: 5em;"><br>Wagle<br></span>
-			<span style="font-size: 1em;">
-             	너네가 알아서<br>보고 와글 들어가거라<br>업데이트 겁나 안되네 똥컴..<br><br><b>기분좋다 ㅎㅎㅎㅎ</b>
-           	</span>
+	
+	</head>
+	<body class="demo-magneto">
+		<main>
+			<section class="content content--layout">
+				<h2 class="word word--magneto">wagle</h2>
+			</section>
+		</main>
+		
+		<div class="w3-container"  style="margin-left: 30%; margin-right: 30%;" >
+		<div class="w3-row w3-section w3-center">
+		    <div class="w3-rest">
+		      
+		      
+		      <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="전체" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('전체')">
+	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="스포츠" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('스포츠')">
+	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="여행" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('여행')">
+	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="요리/음식" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('요리/음식')">
+	          <input class="w3-btn w3-small" type="button" style="background-color:#FCB043;" value="인문학/책" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('인문학/책')">
+		      <br><br>
+		      <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
+		      <input class="w3-button w3-small" style="background-color:#FCB043;" value="Search" type="button" onclick="#">
+		    </div>
 		</div>
-	</header>
-</section>
-<!-- end. 설명 -->
-
-
-<!-- 검색 창 -->
-<div class="w3-container"  style="margin-left: 30%; margin-right: 30%;">
-	<div class="w3-row w3-section w3-center">
-	    <div class="w3-rest">
-	      
-	      <!-- <input class="w3-input w3-small search1"  name="search" type="text" placeholder="Search" style="display: inline-block;">
-	      <input class="w3-button w3-yellow w3-small" value="Search" type="button" onclick="#"> -->
-	      <input class="w3-btn w3-yellow w3-small" type="button" value="전체" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('전체')">
-          <input class="w3-btn w3-yellow w3-small" type="button" value="스포츠" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('스포츠')">
-          <input class="w3-btn w3-yellow w3-small" type="button" value="여행" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('여행')">
-          <input class="w3-btn w3-yellow w3-small" type="button" value="요리/음식" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('요리/음식')">
-          <input class="w3-btn w3-yellow w3-small" type="button" value="인문학/책" onclick="document.location.href='/wagle_spring/board/waglelist?wcategory='+encodeURI('인문학/책')">
-	      
-	    </div>
 	</div>
-</div>
-<!-- end. 검색 창 -->
 
-
-<!-- 그룹 사진 리스트 -->
 <div class="w3-container w3-margin-top " style="margin-left: 10%; margin-right: 10%;">
 	<c:if test="${wcategory eq '전체' || wcategory == null}">
 	<c:forEach var="waglelist" items="${waglelist}">
@@ -131,34 +129,37 @@
 	 </c:forEach>
 	 </c:if>
 	 
-	<c:if test="${wcategory ne '전체'}">
-	 <c:forEach var="waglelist" items="${searchwaglelist}">
-		<!-- 기간이 지난 와글은 표시하지 않도록 해준다. -->
-	 	<c:if test="${today <= waglelist.wend}">
-		 <div class="w3-third w3-container w3-margin-bottom">
-			<div class="w3-container w3-white w3-padding w3-center w3-round w3-button w3-border"  style="height:100%; width:100%;" onclick="document.location.href='wagleContent?wboardid=${waglelist.wboardid}&wname='+encodeURI('${waglelist.wname}')">
-				<img src="<%=request.getContextPath()%>/wagleimg/${waglelist.filename}" alt="Test" class="autoimg">
-				<h4><b>${waglelist.wname}</b></h4>
-				<span class="w3-text-gray">와글 지기 : ${waglelist.whost}</span>
-				<div>
-					<hr>
-					<span class="w3-left">
-						<b>기간:&nbsp;</b>
-						<span>${waglelist.wstart} ~ ${waglelist.wend}</span>
-					</span>
-					<i class="fa fa-user w3-right" style="font-size: 13pt;">&nbsp;<span>${waglelist.all}/${waglelist.wmax}</span></i>
+		<c:if test="${wcategory ne '전체'}">
+		 <c:forEach var="waglelist" items="${searchwaglelist}">
+			<!-- 기간이 지난 와글은 표시하지 않도록 해준다. -->
+		 	<c:if test="${today <= waglelist.wend}">
+			 <div class="w3-third w3-container w3-margin-bottom">
+				<div class="w3-container w3-white w3-padding w3-center w3-round w3-button w3-border"  style="height:100%; width:100%;" onclick="document.location.href='wagleContent?wboardid=${waglelist.wboardid}&wname='+encodeURI('${waglelist.wname}')">
+					<img src="<%=request.getContextPath()%>/wagleimg/${waglelist.filename}" alt="Test" class="autoimg">
+					<h4><b>${waglelist.wname}</b></h4>
+					<span class="w3-text-gray">와글 지기 : ${waglelist.whost}</span>
+					<div>
+						<hr>
+						<span class="w3-left">
+							<b>기간:&nbsp;</b>
+							<span>${waglelist.wstart} ~ ${waglelist.wend}</span>
+						</span>
+						<i class="fa fa-user w3-right" style="font-size: 13pt;">&nbsp;<span>${waglelist.all}/${waglelist.wmax}</span></i>
+					</div>
 				</div>
 			</div>
+			</c:if>
+		 </c:forEach>
+		 </c:if>
 		</div>
-		</c:if>
-	 </c:forEach>
-	 </c:if>
-	 
-	
-</div>
+
 		
 		
-
-
-</body>
+		<script src="${pageContext.request.contextPath}/js/charming.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/anime.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/demo.js"></script>
+		<script src="${pageContext.request.contextPath}/js/demo1.js"></script>
+		
+		
+	</body>
 </html>
