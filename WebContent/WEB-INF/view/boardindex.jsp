@@ -50,8 +50,17 @@
 				    <a href="${pageContext.request.contextPath}/member/joinForm" class="w3-bar-item w3-button">Login</a>
 				  </c:if>
 				  <c:if test="${sessionEmail != null}">
+				    
+				    <label class="w3-right w3-small" style="margin:10px 10px 0px 0px;"> <b>${name}</b> 님 환영합니다.</label>
+				    <c:if test="${count != 0}"> 
+			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="${pageContext.request.contextPath}/message/messagelist">쪽지&nbsp;${count}<strong><font color="red">N</font></strong></a></div>
+			     	 </c:if>
+			         <c:if test="${count == 0}">
+			         <div class="w3-right w3-small" style="margin:10px 10px 0px 0px;"><a href="${pageContext.request.contextPath}/message/sendmessageForm">쪽지</a></div>
+			         </c:if>
+				   
 				    <a href="${pageContext.request.contextPath}/board/mylist" class="w3-bar-item w3-button">와글관리</a>
-				    <a href="/wagle_spring/member/updateForm?email=${sessionEmail}" class="w3-bar-item w3-button">회원정보</a>
+				    <a href="${pageContext.request.contextPath}/member/updateForm?email=${sessionEmail}" class="w3-bar-item w3-button">회원정보</a>
 				   	<a href="${pageContext.request.contextPath}/member/logout" class="w3-bar-item w3-button">Logout</a>
 				  </c:if>
 			</div>
@@ -106,17 +115,18 @@
     
       <!-- image slide-  -->
       <div align="center" class="fond">
-          <div class="contener_slideshow" style="margin-top: 100px;">
-          <div class="contener_slide">
+          <div class="contener_slideshow" style="margin-top: 200px;">
+          <div class="contener_slide" 
+          		style="animation-duration: 10s;-moz-animation-duration: 10s; -webkit-animation-duration: 10s;-ms-animation-duration: 10s;">
            <c:forEach var="imgslide" items="${imgslide}">
-                       <div class="slid_${number}"><a onclick="document.location.href='wagleContent?wboardid=${imgslide.wboardid}&wname='+encodeURI('${imgslide.wname}')">
+                       <div class="slid_${number}"><a style="cursor:pointer;" onclick="document.location.href='wagleContent?wboardid=${imgslide.wboardid}&wname='+encodeURI('${imgslide.wname}')">
               <c:set var="number" value="${number-1}"/>
-              <img src="/wagle_spring/wagleimg/${imgslide.filename}" style="width:610px; height:300px;"></a></div>
+              <img src="${pageContext.request.contextPath}/wagleimg/${imgslide.filename}" style="width:610px; height:400px;">
+              <div  class="w3-display-topleft w3-large w3-container w3-padding-16 w3-black">${imgslide.wname}</div>
+              </a></div>
           </c:forEach> 
-
-
           </div>
-        </div>                                                                                                                                       
+        </div>                                                                                                                                     
       </div>
      
       <button class="w3-btn w3-display-middle" onclick="document.location.href='${pageContext.request.contextPath}/board/waglelist'" 
